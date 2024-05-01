@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jcc/rqBxexEGBRNPTlAgGdAmh+Q5wZVwrfMAVL6ZBo0=",
+  "Hash": "Iy6S7CurDIWScvD2jlu3vlnuVbFPQlS09TMLNPRhk0k=",
   "Source": "PeroShopWeb",
   "BasePath": "_content/PeroShopWeb",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\PeroShopWeb.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\css\\login.css",
+      "SourceId": "PeroShopWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\",
+      "BasePath": "_content/PeroShopWeb",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
       "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\css\\site.css",
       "SourceId": "PeroShopWeb",
       "SourceType": "Discovered",
@@ -91,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Login\\login.jpg",
+      "SourceId": "PeroShopWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\",
+      "BasePath": "_content/PeroShopWeb",
+      "RelativePath": "Images/Login/login.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Login\\login.jpg"
     },
     {
       "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\js\\main.js",

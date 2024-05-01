@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\PeroShopWeb.bundle.scp.css"
     },
     {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Login\\login.jpg",
+      "PackagePath": "staticwebassets\\Images\\Login\\login.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
