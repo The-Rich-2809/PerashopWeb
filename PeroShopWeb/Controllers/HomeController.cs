@@ -134,7 +134,18 @@ namespace PeroShopWeb.Controllers
 
             var insertarusuarios = new Usuario[]
                 {
-                    new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../wwwroot/Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"}
+                    new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"}
+                };
+            var insertarProveedor = new Proveedores[]
+                {
+                    new Proveedores() { Activo = 1, PersonaContacto = "Prueba", Telefono = "55555555", Correo = "hola@gmail.com", iddireccion = 1 }
+                };
+            var insertarProductos = new Producto[]
+                {
+                    new Producto() { Activo = 1, Nombre = "Aipods1", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods1.jpeg", idproveedor = 1,Categoria="Audifonos"},
+                    new Producto() { Activo = 1, Nombre = "Aipods2", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods2.jpeg", idproveedor = 1,Categoria="Audifonos"},
+                    new Producto() { Activo = 1, Nombre = "Aipods3", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods3.jpeg", idproveedor = 1,Categoria = "Audifonos"},
+                    new Producto() { Activo = 1, Nombre = "AipodsM", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/AirpodsM.jpeg", idproveedor = 1,Categoria="Audifonos"}
                 };
 
             foreach (var u in insertardireccion)
@@ -142,6 +153,14 @@ namespace PeroShopWeb.Controllers
 
             foreach (var u in insertarusuarios)
                 _contextDB.Usuario.Add(u);
+
+            foreach (var u in insertarProveedor)
+                _contextDB.Proveedores.Add(u);
+
+            _contextDB.SaveChanges();
+
+            foreach (var u in insertarProductos)
+                _contextDB.Producto.Add(u);
 
             _contextDB.SaveChanges();
         }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj": {}
+    "C:\\Users\\ricar\\Documents\\GitHub\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj": {}
   },
   "projects": {
-    "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj": {
+    "C:\\Users\\ricar\\Documents\\GitHub\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
+        "projectUniqueName": "C:\\Users\\ricar\\Documents\\GitHub\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
         "projectName": "PeroShopWeb",
-        "projectPath": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
-        "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-        "outputPath": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\obj\\",
+        "projectPath": "C:\\Users\\ricar\\Documents\\GitHub\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
+        "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ricar\\Documents\\GitHub\\PerashopWeb\\PeroShopWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +44,18 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,6 +67,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.18, 7.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.18, 7.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.18, 7.0.18]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.18, 7.0.18]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -63,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }
