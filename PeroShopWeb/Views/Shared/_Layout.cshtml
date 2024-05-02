@@ -98,12 +98,10 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="index.html" class="nav-item nav-link active">Home</a>
-                                <form>
-                                    <button asp-action="Index" asp-controller="Productos" class="nav-item nav-link" style="background-color: #3D464D" name="tipo" type="submit" value="Audifonos">
-                                        Hombre
-                                    </button>
-                                </form>
+                                <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-item nav-link active" href="@Url.Action("Index", "Productos", new { valor = "Audifonos" })">Productos</a>
+                                <a class="nav-item nav-link active" href="@Url.Action("Index", "Productos", new { valor = "Telefonos" })">Telefonos</a>
+                                <a class="nav-item nav-link active" href="@Url.Action("Index", "Productos", new { valor = "Fundas" })">Fundas</a>
                                 <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
@@ -136,11 +134,13 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - PeroShopWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div class="text-center">
+        <footer class="py-5 container">
+            <div class="container">
+                &copy; 2024 - PeroShopWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

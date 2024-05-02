@@ -13,17 +13,19 @@ namespace PeroShopWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string tipo) 
+        public IActionResult Index(string valor) 
         {
-            ViewBag.Tipo = tipo;    
+            ViewBag.Tipo = valor;
             List<Producto> listaProductos = _ContextoDB.Producto.ToList();
             return View(listaProductos);
         }
 
         [HttpGet]
-        public IActionResult DetallesProductos(int ID) 
+        public IActionResult DetallesProductos(int valor) 
         {
-            return View();
+            ViewBag.ID = valor;
+            var producto = _ContextoDB.Producto.First(p => p.ID == valor);
+            return View(producto);
         }
 
         [HttpPost]

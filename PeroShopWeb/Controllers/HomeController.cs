@@ -144,8 +144,11 @@ namespace PeroShopWeb.Controllers
                 {
                     new Producto() { Activo = 1, Nombre = "Aipods1", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods1.jpeg", idproveedor = 1,Categoria="Audifonos"},
                     new Producto() { Activo = 1, Nombre = "Aipods2", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods2.jpeg", idproveedor = 1,Categoria="Audifonos"},
-                    new Producto() { Activo = 1, Nombre = "Aipods3", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods3.jpeg", idproveedor = 1,Categoria = "Audifonos"},
-                    new Producto() { Activo = 1, Nombre = "AipodsM", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/AirpodsM.jpeg", idproveedor = 1,Categoria="Audifonos"}
+                    new Producto() { Activo = 1, Nombre = "Aipods3", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods3.jpg", idproveedor = 1,Categoria="Audifonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 12", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/iphone12.jpg", idproveedor = 1,Categoria="Telefonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 13", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/13.jpg", idproveedor = 1,Categoria="Telefonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 14", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/14.jpg", idproveedor = 1,Categoria="Telefonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 15", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/15.jpg", idproveedor = 1,Categoria="Telefonos"}
                 };
 
             foreach (var u in insertardireccion)
