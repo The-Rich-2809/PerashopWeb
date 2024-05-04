@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PeroShopWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d872d2bb6efe6745e2b45ce751c297f0d2161f54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+413e484a93aabd49fab05b3b45d5dee3c1e468bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("PeroShopWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PeroShopWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -127,6 +127,20 @@ namespace PeroShopWeb.Controllers
                 return;
             }
 
+            var insertarAlmacenamiento = new ProductoColor[]
+                {
+                    new ProductoColor() {Color = "Rosa"}
+                };
+
+            var insertarColor = new ProductoColor[]
+                {
+                    new ProductoColor() {Color = "Rosa"}
+                };
+            var insertarAlmacenamineto = new ProductoAlmacenamiento[]
+                {
+                    new ProductoAlmacenamiento() {Almacenamineto = "256"}
+                };
+
             var insertardireccion = new Direccion[]
                 {
                     new Direccion() {Nombre = "Prueba", ApellidoPaterno = "Prueba", ApellidoMaterno = "Prueba", Calle = "Prueba", Colonia = "Prueba", CodigoPostal = "00000", Delegacion = "Prueba"}
@@ -134,7 +148,9 @@ namespace PeroShopWeb.Controllers
 
             var insertarusuarios = new Usuario[]
                 {
-                    new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"}
+                    new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"},
+                    new Usuario() {Correo = "ricardo_138@outlook.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Rich.jpg", Nombre = "Rich"},
+                    new Usuario() {Correo = "a@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Usuario.jpg", Nombre = "A"},
                 };
             var insertarProveedor = new Proveedores[]
                 {
@@ -142,13 +158,13 @@ namespace PeroShopWeb.Controllers
                 };
             var insertarProductos = new Producto[]
                 {
-                    new Producto() { Activo = 1, Nombre = "Aipods1", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods1.jpeg", idproveedor = 1,Categoria="Audifonos"},
-                    new Producto() { Activo = 1, Nombre = "Aipods2", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods2.jpeg", idproveedor = 1,Categoria="Audifonos"},
-                    new Producto() { Activo = 1, Nombre = "Aipods3", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/Airpods3.jpg", idproveedor = 1,Categoria="Audifonos"},
-                    new Producto() { Activo = 1, Nombre = "PearPhone 12", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/iphone12.jpg", idproveedor = 1,Categoria="Telefonos"},
-                    new Producto() { Activo = 1, Nombre = "PearPhone 13", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/13.jpg", idproveedor = 1,Categoria="Telefonos"},
-                    new Producto() { Activo = 1, Nombre = "PearPhone 14", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/14.jpg", idproveedor = 1,Categoria="Telefonos"},
-                    new Producto() { Activo = 1, Nombre = "PearPhone 15", Caracteristicas = "55555555", PrecioCompra = 3, PrecioVenta = 1000, Existencia = 30, RutaImagen = "../Images/Products/15.jpg", idproveedor = 1,Categoria="Telefonos"}
+                    new Producto() { Activo = 1, Nombre = "Aipods1", idproveedor = 1, Categoria="Audifonos"},
+                    new Producto() {Activo = 1, Nombre = "Aipods2", idproveedor = 1, Categoria = "Audifonos"},
+                    new Producto() { Activo = 1, Nombre = "Aipods3", idproveedor = 1, Categoria = "Audifonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 12", idproveedor = 1, Categoria="Telefonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 13", idproveedor = 1, Categoria = "Telefonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 14", idproveedor = 1, Categoria = "Telefonos"},
+                    new Producto() { Activo = 1, Nombre = "PearPhone 15", idproveedor = 1, Categoria = "Telefonos"}
                 };
 
             foreach (var u in insertardireccion)

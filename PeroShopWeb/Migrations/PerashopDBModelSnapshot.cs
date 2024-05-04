@@ -91,28 +91,11 @@ namespace PeroShopWeb.Migrations
                     b.Property<int>("Activo")
                         .HasColumnType("int");
 
-                    b.Property<string>("Caracteristicas")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Categoria")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Existencia")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PrecioCompra")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrecioVenta")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("RutaImagen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

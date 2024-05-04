@@ -150,3 +150,5 @@ C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\bin\Debug\net7.0\runtimes\win\lib\n
 C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\PeroShopWeb.csproj.AssemblyReference.cache
 C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\PeroShop.3458D8EC.Up2Date
+C:\Users\ricar\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
+C:\Users\ricar\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutCliente.cshtml.rz.scp.css

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PeroShopWeb.Models;
+using System.Drawing;
 
 namespace PeroShopWeb.Controllers
 {
@@ -10,14 +11,6 @@ namespace PeroShopWeb.Controllers
         public ProductosController(PerashopDB perashopDB)
         {
             _ContextoDB = perashopDB;
-        }
-
-        [HttpGet]
-        public IActionResult Index(string valor) 
-        {
-            ViewBag.Tipo = valor;
-            List<Producto> listaProductos = _ContextoDB.Producto.ToList();
-            return View(listaProductos);
         }
 
         [HttpGet]
@@ -32,6 +25,13 @@ namespace PeroShopWeb.Controllers
         public IActionResult DetallesProductos(Producto producto)
         {
             return View();
+        }
+        [HttpGet]
+        public IActionResult ListaProductos(string valor)
+        {
+            ViewBag.Tipo = valor;
+            List<Producto> listaProductos = _ContextoDB.Producto.ToList();
+            return View(listaProductos); ;
         }
     }
 }
