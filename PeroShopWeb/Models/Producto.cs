@@ -11,6 +11,7 @@ namespace PeroShopWeb.Models
         public int Activo { get; set; }
         public string Nombre { get; set; }
         public string Caracteristicas { get; set; }
+        public string Categoria { get; set; }
         public decimal PrecioCompra { get; set; }
         public decimal PrecioVenta { get; set; }
         public int Existencia { get; set; }

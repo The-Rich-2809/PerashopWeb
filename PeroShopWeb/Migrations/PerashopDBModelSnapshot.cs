@@ -95,6 +95,10 @@ namespace PeroShopWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Existencia")
                         .HasColumnType("int");
 

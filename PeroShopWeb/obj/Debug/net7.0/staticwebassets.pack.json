@@ -5,6 +5,38 @@
       "PackagePath": "staticwebassets\\PeroShopWeb.bundle.scp.css"
     },
     {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\13.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\13.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\14.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\14.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\15.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\15.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Airpods1.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\Airpods1.jpeg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Airpods2.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\Airpods2.jpeg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Airpods3.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\Airpods3.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\AirpodsM.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\AirpodsM.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\iphone12.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\iphone12.jpg"
+    },
+    {
       "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
