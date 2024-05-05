@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PeroShopWeb.Models
 {
     public class ProductoColorAlamacenamientoInter
     {
-
+        [Key]
+        public int ID { get; set; }
         public int idproducto { get; set; }
         public int idcolor { get; set; }
         public int idalmacenamiento { get; set; }

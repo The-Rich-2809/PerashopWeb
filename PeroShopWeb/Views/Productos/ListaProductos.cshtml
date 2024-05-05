@@ -1,18 +1,27 @@
-﻿@model IEnumerable<PeroShopWeb.Models.Producto>
+﻿@model PeroShopWeb.Models.ProductosViewModel
 
 <body>
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">@ViewBag.Tipo</span></h2>
         <div class="row px-xl-5">
             @{
-                foreach (var p in Model)
+                foreach (var p in Model.Productos)
                 {
                     if (ViewBag.Tipo == p.Categoria)
                     {
                         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                             <div class="product-item bg-light mb-4">
                                 <div class="product-img position-relative overflow-hidden">
-                                    <!--<img class="img-fluid w-100" src="p.RutaImagen" alt="p.Nombre">-->
+                                    @{
+                                        foreach (var f in Model.ProductosInter)
+                                        {
+                                            if (p.ID == f.idproducto)
+                                            {
+                                                <img class="img-fluid w-100" src="@f.RutaImagen" alt="p.Nombre">
+                                                break;
+                                            }
+                                        }
+                                    }
                                     <div class="product-action">
                                         <a class="btn btn-outline-dark btn-square tipo" href="@Url.Action("DetallesProductos", "Productos", new { valor = p.ID })"><i class="fa fa-shopping-cart"></i></a>
                                     </div>
@@ -20,7 +29,16 @@
                                 <div class="text-center py-4">
                                     <a class="h6 text-decoration-none text-truncate" href="">@p.Nombre</a>
                                     <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <!--<h5>$p.PrecioVenta</h5>-->
+                                        @{
+                                            foreach (var f in Model.ProductosInter)
+                                            {
+                                                if (p.ID == f.idproducto)
+                                                {
+                                                    <h5>$ @f.PrecioVenta</h5>
+                                                    break;
+                                                }
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>

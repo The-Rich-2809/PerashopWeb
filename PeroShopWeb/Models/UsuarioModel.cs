@@ -83,5 +83,10 @@
                 return false;
             }
         }
+
+        public bool EditarUsuario()
+        {
+            
+        }
     }
 }

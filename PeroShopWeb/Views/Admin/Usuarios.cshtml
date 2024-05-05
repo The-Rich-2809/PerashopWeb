@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PeroShopWeb.Models.Usuario>
+@{
+    Layout = "_LayoutAdmin2";
+}
+
+<body>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Nivel</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @{
+                    foreach (var u in Model)
+                    {
+                        <tr>
+                            <td>@u.Nombre</td>
+                            <td>@u.Correo</td>
+                            <td>@u.TipoUsuario</td>
+                            <td>
+                            <td>
+                                <a class="btn btn-primary text-white" asp-action="EditarUsurios" asp-route-id="@u.Correo" asp-route-accion="Editar">Editar</a>
+                                <a class="btn btn-danger text-white" asp-action="AccionesUsurios" asp-route-id="@u.Correo" asp-route-accion="Eliminar">Borrar</a>
+                            </td>
+                            </td>
+                        </tr>   
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

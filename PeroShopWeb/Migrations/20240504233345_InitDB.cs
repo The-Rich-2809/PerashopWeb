@@ -12,6 +12,19 @@ namespace PeroShopWeb.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Almacenamientos",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Almacenamineto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Almacenamientos", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Carrito",
                 columns: table => new
                 {
@@ -24,6 +37,19 @@ namespace PeroShopWeb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Carrito", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Colores",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colores", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,10 +165,63 @@ namespace PeroShopWeb.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProductoInter",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idproducto = table.Column<int>(type: "int", nullable: false),
+                    idcolor = table.Column<int>(type: "int", nullable: false),
+                    idalmacenamiento = table.Column<int>(type: "int", nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    RutaImagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Caracteristicas = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrecioCompra = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PrecioVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductoInter", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ProductoInter_Almacenamientos_idalmacenamiento",
+                        column: x => x.idalmacenamiento,
+                        principalTable: "Almacenamientos",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductoInter_Colores_idcolor",
+                        column: x => x.idcolor,
+                        principalTable: "Colores",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductoInter_Producto_idproducto",
+                        column: x => x.idproducto,
+                        principalTable: "Producto",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Producto_idproveedor",
                 table: "Producto",
                 column: "idproveedor");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductoInter_idalmacenamiento",
+                table: "ProductoInter",
+                column: "idalmacenamiento");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductoInter_idcolor",
+                table: "ProductoInter",
+                column: "idcolor");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductoInter_idproducto",
+                table: "ProductoInter",
+                column: "idproducto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Proveedores_iddireccion",
@@ -167,16 +246,25 @@ namespace PeroShopWeb.Migrations
                 name: "Carrito");
 
             migrationBuilder.DropTable(
-                name: "Producto");
+                name: "ProductoInter");
 
             migrationBuilder.DropTable(
                 name: "Venta");
 
             migrationBuilder.DropTable(
-                name: "Proveedores");
+                name: "Almacenamientos");
+
+            migrationBuilder.DropTable(
+                name: "Colores");
+
+            migrationBuilder.DropTable(
+                name: "Producto");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Proveedores");
 
             migrationBuilder.DropTable(
                 name: "Direccion");

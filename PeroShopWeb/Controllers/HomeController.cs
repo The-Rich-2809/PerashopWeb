@@ -127,18 +127,21 @@ namespace PeroShopWeb.Controllers
                 return;
             }
 
-            var insertarAlmacenamiento = new ProductoColor[]
-                {
-                    new ProductoColor() {Color = "Rosa"}
-                };
-
             var insertarColor = new ProductoColor[]
                 {
-                    new ProductoColor() {Color = "Rosa"}
+                    new ProductoColor() {Color = "Rosa"},
+                    new ProductoColor() {Color = "Blanco"},
+                    new ProductoColor() {Color = "Negro"},
+                    new ProductoColor() {Color = "Azul"}
                 };
             var insertarAlmacenamineto = new ProductoAlmacenamiento[]
                 {
-                    new ProductoAlmacenamiento() {Almacenamineto = "256"}
+                    new ProductoAlmacenamiento() {Almacenamineto = "0"},
+                    new ProductoAlmacenamiento() {Almacenamineto = "64"},
+                    new ProductoAlmacenamiento() {Almacenamineto = "128"},
+                    new ProductoAlmacenamiento() {Almacenamineto = "256"},
+                    new ProductoAlmacenamiento() {Almacenamineto = "512"},
+                    new ProductoAlmacenamiento() {Almacenamineto = "1TB"}
                 };
 
             var insertardireccion = new Direccion[]
@@ -150,7 +153,7 @@ namespace PeroShopWeb.Controllers
                 {
                     new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"},
                     new Usuario() {Correo = "ricardo_138@outlook.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Rich.jpg", Nombre = "Rich"},
-                    new Usuario() {Correo = "a@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Usuario.jpg", Nombre = "A"},
+                    new Usuario() {Correo = "a@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Usuario.jpg", Nombre = "A"}
                 };
             var insertarProveedor = new Proveedores[]
                 {
@@ -166,20 +169,46 @@ namespace PeroShopWeb.Controllers
                     new Producto() { Activo = 1, Nombre = "PearPhone 14", idproveedor = 1, Categoria = "Telefonos"},
                     new Producto() { Activo = 1, Nombre = "PearPhone 15", idproveedor = 1, Categoria = "Telefonos"}
                 };
+            var insertarProductosInter = new ProductoColorAlamacenamientoInter[]
+                {
+                    new ProductoColorAlamacenamientoInter() {idproducto = 1, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Airpods1.jpeg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 3500},
+                    new ProductoColorAlamacenamientoInter() {idproducto = 2, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Airpods2.jpeg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 4000},
+                    new ProductoColorAlamacenamientoInter() {idproducto = 3, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Airpods3.jpg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 5000},
+                    new ProductoColorAlamacenamientoInter() {idproducto = 4, idcolor = 1, idalmacenamiento = 2, Stock = 25, RutaImagen = "../Images/Products/iphone12.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500},
+                    new ProductoColorAlamacenamientoInter() {idproducto = 4, idcolor = 2, idalmacenamiento = 2, Stock = 25, RutaImagen = "../Images/Products/iphone12.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500},
+                    new ProductoColorAlamacenamientoInter() {idproducto = 4, idcolor = 3, idalmacenamiento = 2, Stock = 25, RutaImagen = "../Images/Products/iphone12.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500}
+                };
 
             foreach (var u in insertardireccion)
                 _contextDB.Direccion.Add(u);
+            _contextDB.SaveChanges();
 
             foreach (var u in insertarusuarios)
                 _contextDB.Usuario.Add(u);
+            _contextDB.SaveChanges();
 
             foreach (var u in insertarProveedor)
                 _contextDB.Proveedores.Add(u);
 
             _contextDB.SaveChanges();
 
+            foreach (var u in insertarColor)
+                _contextDB.Colores.Add(u);
+
+            _contextDB.SaveChanges();
+
+            foreach (var u in insertarAlmacenamineto)
+                _contextDB.Almacenamientos.Add(u);
+
+            _contextDB.SaveChanges();
+
             foreach (var u in insertarProductos)
                 _contextDB.Producto.Add(u);
+
+            _contextDB.SaveChanges();
+
+            foreach (var u in insertarProductosInter)
+                _contextDB.ProductoInter.Add(u);
 
             _contextDB.SaveChanges();
         }

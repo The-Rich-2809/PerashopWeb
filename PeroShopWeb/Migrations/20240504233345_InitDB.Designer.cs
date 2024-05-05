@@ -12,7 +12,7 @@ using PeroShopWeb.Models;
 namespace PeroShopWeb.Migrations
 {
     [DbContext(typeof(PerashopDB))]
-    [Migration("20240504084519_InitDB")]
+    [Migration("20240504233345_InitDB")]
     partial class InitDB
     {
         /// <inheritdoc />
@@ -110,6 +110,85 @@ namespace PeroShopWeb.Migrations
                     b.HasIndex("idproveedor");
 
                     b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("PeroShopWeb.Models.ProductoAlmacenamiento", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Almacenamineto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Almacenamientos");
+                });
+
+            modelBuilder.Entity("PeroShopWeb.Models.ProductoColor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Colores");
+                });
+
+            modelBuilder.Entity("PeroShopWeb.Models.ProductoColorAlamacenamientoInter", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Caracteristicas")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PrecioCompra")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PrecioVenta")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RutaImagen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idalmacenamiento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idcolor")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idproducto")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("idalmacenamiento");
+
+                    b.HasIndex("idcolor");
+
+                    b.HasIndex("idproducto");
+
+                    b.ToTable("ProductoInter");
                 });
 
             modelBuilder.Entity("PeroShopWeb.Models.Proveedores", b =>
@@ -229,6 +308,33 @@ namespace PeroShopWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Proveedor");
+                });
+
+            modelBuilder.Entity("PeroShopWeb.Models.ProductoColorAlamacenamientoInter", b =>
+                {
+                    b.HasOne("PeroShopWeb.Models.ProductoAlmacenamiento", "ProductoAlmacenamiento")
+                        .WithMany()
+                        .HasForeignKey("idalmacenamiento")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PeroShopWeb.Models.ProductoColor", "ProductoColor")
+                        .WithMany()
+                        .HasForeignKey("idcolor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PeroShopWeb.Models.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("idproducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("ProductoAlmacenamiento");
+
+                    b.Navigation("ProductoColor");
                 });
 
             modelBuilder.Entity("PeroShopWeb.Models.Proveedores", b =>

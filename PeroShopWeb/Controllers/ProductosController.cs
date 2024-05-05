@@ -27,11 +27,19 @@ namespace PeroShopWeb.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult ListaProductos(string valor)
+        public IActionResult ListaProductos(string id)
         {
-            ViewBag.Tipo = valor;
+            ViewBag.Tipo = id;
             List<Producto> listaProductos = _ContextoDB.Producto.ToList();
-            return View(listaProductos); ;
+            List<ProductoColorAlamacenamientoInter> listaproint = _ContextoDB.ProductoInter.ToList();
+
+            var viewmodel = new ProductosViewModel
+            {
+                Productos = listaProductos,
+                ProductosInter = listaproint
+            };
+
+            return View(viewmodel); 
         }
     }
 }
