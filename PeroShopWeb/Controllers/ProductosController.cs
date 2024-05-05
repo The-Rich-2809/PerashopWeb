@@ -27,9 +27,9 @@ namespace PeroShopWeb.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult ListaProductos(string id)
+        public IActionResult ListaProductos(string valor)
         {
-            ViewBag.Tipo = id;
+            ViewBag.Tipo = valor;
             List<Producto> listaProductos = _ContextoDB.Producto.ToList();
             List<ProductoColorAlamacenamientoInter> listaproint = _ContextoDB.ProductoInter.ToList();
 
