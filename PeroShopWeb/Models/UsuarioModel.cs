@@ -84,9 +84,9 @@
             }
         }
 
-        public bool EditarUsuario()
-        {
+        //public bool EditarUsuario()
+        //{
             
-        }
+        //}
     }
 }

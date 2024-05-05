@@ -37,13 +37,14 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label asp-for="Nivel" class="form-label">Nivel del Usuario</label>
-                        <select asp-for="Nivel" name="Nivel" class="form-select" id="Nivel" required>
+                        <label asp-for="TipoUsuario" class="form-label">Nivel del Usuario</label>
+                        <select asp-for="TipoUsuario" name="Nivel" class="form-select" id="Nivel" required>
                             <option value="">Nivel...</option>
                             <option>Cliente</option>
                             <option>Admin</option>
                         </select>
                         <div class="invalid-feedback">
+                            Seleccione un nivel válido.
                             Seleccione un nivel válido.
                         </div>
                     </div>
