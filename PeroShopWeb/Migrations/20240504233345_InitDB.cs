@@ -78,7 +78,6 @@ namespace PeroShopWeb.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Activo = table.Column<int>(type: "int", nullable: false),
-                    NombreProveedor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PersonaContacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),

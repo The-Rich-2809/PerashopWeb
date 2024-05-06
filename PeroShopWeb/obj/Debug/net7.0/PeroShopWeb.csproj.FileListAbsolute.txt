@@ -155,4 +155,3 @@ C:\Users\ricar\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedc
 C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
 C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutCliente.cshtml.rz.scp.css
 C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutAdmin2.cshtml.rz.scp.css
-C:\Users\ricar\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutAdmin2.cshtml.rz.scp.css

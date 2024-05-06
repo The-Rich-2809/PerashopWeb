@@ -203,10 +203,6 @@ namespace PeroShopWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NombreProveedor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PersonaContacto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

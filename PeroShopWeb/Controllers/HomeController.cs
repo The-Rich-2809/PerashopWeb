@@ -157,7 +157,7 @@ namespace PeroShopWeb.Controllers
                 };
             var insertarProveedor = new Proveedores[]
                 {
-                    new Proveedores() { Activo = 1, NombreProveedor="Hola", PersonaContacto = "Prueba", Telefono = "55555555", Correo = "hola@gmail.com", iddireccion = 1 }
+                    new Proveedores() { Activo = 1, PersonaContacto = "Prueba", Telefono = "55555555", Correo = "hola@gmail.com", iddireccion = 1 }
                 };
             var insertarProductos = new Producto[]
                 {
