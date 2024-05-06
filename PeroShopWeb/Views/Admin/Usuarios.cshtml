@@ -23,8 +23,8 @@
                             <td>@u.TipoUsuario</td>
                             <td>
                             <td>
-                                <a class="btn btn-primary text-white" asp-action="EditarUsuarios" asp-route-id="@u.ID">Editar</a>
-                                <a class="btn btn-danger text-white" asp-action="EliminarUsuarios" asp-route-id="@u.ID">Borrar</a>
+                                <a class="btn btn-primary text-white" asp-action="EditarUsurios" asp-route-id="@u.Correo" asp-route-accion="Editar">Editar</a>
+                                <a class="btn btn-danger text-white" asp-action="AccionesUsurios" asp-route-id="@u.Correo" asp-route-accion="Eliminar">Borrar</a>
                             </td>
                             </td>
                         </tr>   
