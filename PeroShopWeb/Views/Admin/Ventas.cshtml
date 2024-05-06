@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PeroShopWeb.Models.Usuario>
+﻿@model IEnumerable<PeroShopWeb.Models.CarritoVenta>
 @{
     Layout = "_LayoutAdmin2";
 }
@@ -9,8 +9,10 @@
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Nivel</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Detalle del envio</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -19,15 +21,16 @@
                     {
                         <tr>
                             <td>@u.Nombre</td>
-                            <td>@u.Correo</td>
-                            <td>@u.TipoUsuario</td>
+                            <td>@u.Cantidad</td>
+                            <td>(@u.Total + @u.IVA)</td>
+                            <td>@u.Fecha</td>
+                            <td>@u.Envio</td>
                             <td>
                             <td>
-                                <a class="btn btn-primary text-white" asp-action="EditarUsuarios" asp-route-id="@u.ID">Editar</a>
-                                <a class="btn btn-danger text-white" asp-action="EliminarUsuarios" asp-route-id="@u.ID">Borrar</a>
+                                <a class="btn btn-primary text-white" asp-action="DetalleVenta" asp-route-id="@u.idusuario" asp-route-idord="@u.IDOrden" asp-route-envio="@u.Envio">Editar</a>
                             </td>
                             </td>
-                        </tr>   
+                        </tr>
                     }
                 }
             </tbody>

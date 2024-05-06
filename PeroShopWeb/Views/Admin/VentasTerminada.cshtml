@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PeroShopWeb.Models.CarritoVenta>
+
+@{
+    Layout = "_LayoutAdmin2";
+}
+
+<body>
+    <main class="container">
+        <div class="my-3 p-3 bg-light rounded shadow-sm">
+            <h1>Ventas Terminadas</h1>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Detalle del envio</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @{
+                        foreach (var u in Model)
+                        {
+                            <tr>
+                                <td>@u.Nombre</td>
+                                <td>@u.Cantidad</td>
+                                <td>(@u.Total + @u.IVA)</td>
+                                <td>@u.Fecha</td>
+                                <td>@u.Envio</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+    </main>
+</body>
