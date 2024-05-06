@@ -25,18 +25,26 @@ namespace PeroShopWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Carrito",
+                name: "CarritoVenta",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PrecioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RutaImagen = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IVA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Envio = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    idusuario = table.Column<int>(type: "int", nullable: false),
+                    idproductointer = table.Column<int>(type: "int", nullable: false),
+                    RutaImagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cambio = table.Column<int>(type: "int", nullable: false),
+                    IDOrden = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Carrito", x => x.ID);
+                    table.PrimaryKey("PK_CarritoVenta", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,31 +149,6 @@ namespace PeroShopWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Venta",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IVA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    idusuario = table.Column<int>(type: "int", nullable: false),
-                    idusuarios = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Venta", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Venta_Usuario_idusuarios",
-                        column: x => x.idusuarios,
-                        principalTable: "Usuario",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProductoInter",
                 columns: table => new
                 {
@@ -232,24 +215,19 @@ namespace PeroShopWeb.Migrations
                 name: "IX_Usuario_iddireccion",
                 table: "Usuario",
                 column: "iddireccion");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Venta_idusuarios",
-                table: "Venta",
-                column: "idusuarios");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Carrito");
+                name: "CarritoVenta");
 
             migrationBuilder.DropTable(
                 name: "ProductoInter");
 
             migrationBuilder.DropTable(
-                name: "Venta");
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Almacenamientos");
@@ -259,9 +237,6 @@ namespace PeroShopWeb.Migrations
 
             migrationBuilder.DropTable(
                 name: "Producto");
-
-            migrationBuilder.DropTable(
-                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Proveedores");

@@ -22,12 +22,28 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQmllbnZlbmlkYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/DetalleVenta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGV0YWxsZVZlbnRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EditarUsuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyVXN1YXJpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EliminarUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWxpbWluYXJVc3Vhcmlvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/Usuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXN1YXJpb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/Ventas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVudGFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/VentasTerminada.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVudGFzVGVybWluYWRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Home/Index.cshtml]

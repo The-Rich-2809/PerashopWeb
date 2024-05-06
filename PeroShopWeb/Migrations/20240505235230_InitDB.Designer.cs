@@ -12,7 +12,7 @@ using PeroShopWeb.Models;
 namespace PeroShopWeb.Migrations
 {
     [DbContext(typeof(PerashopDB))]
-    [Migration("20240504233345_InitDB")]
+    [Migration("20240505235230_InitDB")]
     partial class InitDB
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace PeroShopWeb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PeroShopWeb.Models.Carrito", b =>
+            modelBuilder.Entity("PeroShopWeb.Models.CarritoVenta", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -33,20 +33,45 @@ namespace PeroShopWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Nombre")
+                    b.Property<int>("Cambio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Envio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PrecioTotal")
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IDOrden")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("IVA")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RutaImagen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("idproductointer")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idusuario")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
-                    b.ToTable("Carrito");
+                    b.ToTable("CarritoVenta");
                 });
 
             modelBuilder.Entity("PeroShopWeb.Models.Direccion", b =>
@@ -262,43 +287,6 @@ namespace PeroShopWeb.Migrations
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("PeroShopWeb.Models.Venta", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("IVA")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("idusuario")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idusuarios")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("idusuarios");
-
-                    b.ToTable("Venta");
-                });
-
             modelBuilder.Entity("PeroShopWeb.Models.Producto", b =>
                 {
                     b.HasOne("PeroShopWeb.Models.Proveedores", "Proveedor")
@@ -357,17 +345,6 @@ namespace PeroShopWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Direccion");
-                });
-
-            modelBuilder.Entity("PeroShopWeb.Models.Venta", b =>
-                {
-                    b.HasOne("PeroShopWeb.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("idusuarios")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
