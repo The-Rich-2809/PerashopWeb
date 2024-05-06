@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PeroShopWeb.Models
 {
-    public class Venta
+    public class CarritoVenta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,10 +13,11 @@ namespace PeroShopWeb.Models
         public decimal Total { get; set; }
         public decimal IVA { get; set; }
         public DateTime Fecha { get; set; }
+        public string Envio { get; set; }
         public int idusuario { get; set; }
-
-        [ForeignKey("idusuarios")]
-        public virtual Usuario Usuario { get; set; }
-
+        public int idproductointer { get; set; }
+        public string RutaImagen { get; set; }
+        public int Cambio { get; set; }
+        public int IDOrden { get; set; }
     }
 }

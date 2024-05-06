@@ -179,12 +179,22 @@ namespace PeroShopWeb.Controllers
                     new ProductoColorAlamacenamientoInter() {idproducto = 4, idcolor = 3, idalmacenamiento = 2, Stock = 25, RutaImagen = "../Images/Products/iphone12.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500}
                 };
 
+            var insertarventas = new CarritoVenta[]
+                {
+                    new CarritoVenta() { Nombre = "Prueba", Cantidad = 10, Total = 1500, IVA = Convert.ToDecimal(1500*1.16), Fecha = DateTime.Now, idusuario = 1, Envio = "En Proceso", idproductointer = 2, Cambio = 2, IDOrden = 1, RutaImagen =  "../Images/Products/Airpods2.jpeg"}
+                };
+
             foreach (var u in insertardireccion)
                 _contextDB.Direccion.Add(u);
             _contextDB.SaveChanges();
 
             foreach (var u in insertarusuarios)
                 _contextDB.Usuario.Add(u);
+            _contextDB.SaveChanges();
+
+            foreach (var u in insertarventas)
+                _contextDB.CarritoVenta.Add(u);
+
             _contextDB.SaveChanges();
 
             foreach (var u in insertarProveedor)

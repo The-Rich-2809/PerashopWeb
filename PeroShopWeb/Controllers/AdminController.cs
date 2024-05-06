@@ -12,6 +12,7 @@ namespace PeroShopWeb.Controllers
     {
         private HelperUploadFiles helperUpload;
         private readonly PerashopDB _contextDB;
+        public static string MyProperty { get; set; }
 
         public AdminController(HelperUploadFiles helperUpload, PerashopDB perashopDB)
         {
@@ -54,11 +55,74 @@ namespace PeroShopWeb.Controllers
             return View(listausuarios);
         }
         [HttpGet]
-        public IActionResult EditarUsuarios(string id)
+        public IActionResult EditarUsuarios(int id)
         {
-            List<Usuario> listausuarios = _contextDB.Usuario.ToList();
+            var usuario = _contextDB.Usuario.FirstOrDefault(p => p.ID == id);
             Cookies();
-            return View(listausuarios);
+            return View(usuario);
+        }
+
+        [HttpGet]
+        public IActionResult EliminarUsuarios(int id)
+        {
+            var usuario = _contextDB.Usuario.FirstOrDefault(p => p.ID == id);
+            Cookies();
+            return View(usuario);
+        }
+
+        [HttpGet]
+        public IActionResult Ventas()
+        {
+            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.ToList();
+            Cookies();
+            return View(listaventas);
+        }
+        [HttpGet]
+        public IActionResult DetalleVenta(int id, int idord, string envio)
+        {
+            var usrtemp = _contextDB.Usuario.FirstOrDefault(d => d.ID == id);
+
+            ViewBag.Direccion = _contextDB.Direccion.FirstOrDefault(d => d.iD == usrtemp.iddireccion);
+            ViewBag.Productos = _contextDB.Producto.ToList();
+            ViewBag.CarrVen = _contextDB.CarritoVenta.ToList();
+            ViewBag.inter = _contextDB.ProductoInter.ToList();
+            ViewBag.Usuario = usrtemp;
+            ViewBag.IdOrden = idord;
+            ViewBag.Envio = envio;
+            MyProperty = envio;
+
+            Cookies();
+
+            return View();
+        }
+
+        public IActionResult CambioEstado(int Id)
+        {
+            var orden = _contextDB.CarritoVenta.FirstOrDefault(c => c.Envio == MyProperty);
+            if (Id == 1)
+            {
+                orden.Envio = "Tu paquete esta listo para ser enviado";
+            }
+            else if (Id == 2)
+            {
+                orden.Envio = "Tu paquete esta en camino a tu domicilio";
+            }
+            else if (Id == 3)
+            {
+                orden.Envio = "Tu paquete a sido entregado";
+            }
+            _contextDB.CarritoVenta.Update(orden);
+            _contextDB.SaveChanges();
+
+            return RedirectToAction("Ventas");
+        }
+
+        [HttpGet]
+        public IActionResult VentasTerminada()
+        {
+            List<CarritoVenta> inter = _contextDB.CarritoVenta.ToList();
+            Cookies();
+            return View(inter);
         }
         [HttpGet]
         public IActionResult Productos()
