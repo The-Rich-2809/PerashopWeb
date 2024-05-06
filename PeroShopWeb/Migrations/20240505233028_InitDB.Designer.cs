@@ -12,7 +12,7 @@ using PeroShopWeb.Models;
 namespace PeroShopWeb.Migrations
 {
     [DbContext(typeof(PerashopDB))]
-    [Migration("20240504233345_InitDB")]
+    [Migration("20240505233028_InitDB")]
     partial class InitDB
     {
         /// <inheritdoc />
@@ -203,6 +203,10 @@ namespace PeroShopWeb.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreProveedor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -9,6 +9,7 @@ namespace PeroShopWeb.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public int Activo { get; set; }
+        public string NombreProveedor { get; set; }
         public string PersonaContacto { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
