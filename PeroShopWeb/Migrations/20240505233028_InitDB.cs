@@ -25,26 +25,18 @@ namespace PeroShopWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CarritoVenta",
+                name: "Carrito",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IVA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Envio = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    idusuario = table.Column<int>(type: "int", nullable: false),
-                    idproductointer = table.Column<int>(type: "int", nullable: false),
-                    RutaImagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cambio = table.Column<int>(type: "int", nullable: false),
-                    IDOrden = table.Column<int>(type: "int", nullable: false)
+                    PrecioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RutaImagen = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarritoVenta", x => x.ID);
+                    table.PrimaryKey("PK_Carrito", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,6 +78,7 @@ namespace PeroShopWeb.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Activo = table.Column<int>(type: "int", nullable: false),
+                    NombreProveedor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PersonaContacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -144,6 +137,31 @@ namespace PeroShopWeb.Migrations
                         name: "FK_Producto_Proveedores_idproveedor",
                         column: x => x.idproveedor,
                         principalTable: "Proveedores",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Venta",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IVA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    idusuario = table.Column<int>(type: "int", nullable: false),
+                    idusuarios = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Venta", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Venta_Usuario_idusuarios",
+                        column: x => x.idusuarios,
+                        principalTable: "Usuario",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -215,19 +233,24 @@ namespace PeroShopWeb.Migrations
                 name: "IX_Usuario_iddireccion",
                 table: "Usuario",
                 column: "iddireccion");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Venta_idusuarios",
+                table: "Venta",
+                column: "idusuarios");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CarritoVenta");
+                name: "Carrito");
 
             migrationBuilder.DropTable(
                 name: "ProductoInter");
 
             migrationBuilder.DropTable(
-                name: "Usuario");
+                name: "Venta");
 
             migrationBuilder.DropTable(
                 name: "Almacenamientos");
@@ -237,6 +260,9 @@ namespace PeroShopWeb.Migrations
 
             migrationBuilder.DropTable(
                 name: "Producto");
+
+            migrationBuilder.DropTable(
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Proveedores");

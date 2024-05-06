@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PeroShopWeb.Models.Proveedores>
+@{
+    Layout = "_LayoutAdmin2";
+}
+
+<body>
+    <main class="container">
+        <div class="my-3 p-3 bg-light rounded shadow-sm">
+            <h1>Nuevo Producto</h1>
+            <form class="needs-validation" novalidate method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+
+                    <div class="col-sm-4">
+                        <label for="Producto" class="form-label">Nombre del Producto</label>
+                        <input name="Nombre" type="text" class="form-control" id="Producto" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere un nombre válido.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="Categoria" class="form-label">Categoria del Producto</label>
+                        <select name="idproveedor" class="form-select" id="Categoria" required>
+                            <option value="">Proveedor...</option>
+                            @{
+                                int i = 0;
+                                foreach (var u in Model)
+                                {
+                                    i++;
+                                    <option value="@i">@u.NombreProveedor</option>
+                                }
+                            }
+                        </select>
+                        <div class="invalid-feedback">
+                            Seleccione una categoria válida.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Categoria" class="form-label">Categoria del Producto</label>
+                        <select name="Categoria" class="form-select" id="Categoria" required>
+                            <option value="">Categoria...</option>
+                            <option>Telefonos</option>
+                            <option>Fundas</option>
+                            <option>Audifonos</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Seleccione una categoria válida.
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <button asp-controller="Admin" asp-action="NuevoProducto" method="post" class="w-100 btn btn-primary btn-lg" type="submit">Registar producto</button>
+            </form>
+            <br />
+            <h1>@ViewBag.Mensaje</h1>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="~/js/form-validation.js"></script>
+</body>
