@@ -2,6 +2,27 @@
 @{
     Layout = "_LayoutAdmin2";
 }
+<script>
+    function actualizarCombobox() {
+        var seleccion = document.getElementById("combobox1").value;
+        var combobox2 = document.getElementById("combobox2");
+
+        // Limpia las opciones existentes
+        combobox2.innerHTML = "";
+
+        // Agrega nuevas opciones basadas en la selección del primer combobox
+        if (seleccion === "Opción 1") { 
+            combobox2.options.add(new Option("Subopción 1.1", "1.1"));
+            combobox2.options.add(new Option("Subopción 1.2", "1.2"));
+        } else if (seleccion === "Opción 2") {
+            combobox2.options.add(new Option("Subopción 2.1", "2.1"));
+            combobox2.options.add(new Option("Subopción 2.2", "2.2"));
+        } else if (seleccion === "Opción 3") {
+            combobox2.options.add(new Option("Subopción 3.1", "3.1"));
+            combobox2.options.add(new Option("Subopción 3.2", "3.2"));
+        }
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <body>

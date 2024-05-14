@@ -157,7 +157,17 @@ namespace PeroShopWeb.Controllers
             ViewBag.NombreProducto = Nombre;
             CategoriaProducto = Categoria;
             ViewBag.Categoria = Categoria;
-            return View();
+
+            List<ProductoColorAlamacenamientoInter> listproductoInter = _contextDB.ProductoInter.ToList();
+            List<ProductoColor> listproductoColor = _contextDB.Colores.ToList();
+            List<ProductoAlmacenamiento> listproductoAlmacenamiento = _contextDB.Almacenamientos.ToList();
+            var viewmodel = new ProductosViewModel
+            {
+                ProductosInter = listproductoInter,
+                ProductoColors = listproductoColor,
+                productoAlmacenamientos = listproductoAlmacenamiento
+            };
+            return View(viewmodel);
         }
         [HttpGet]
         public IActionResult AgregaCaracteristicas()

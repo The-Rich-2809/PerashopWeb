@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PeroShopWeb.Models.ProductosViewModel
+@{
     Layout = "_LayoutAdmin2";
 }
 
@@ -17,25 +18,45 @@
                 <tr>
                     <th scope="col">Stock</th>
                     <th scope="col">Color </th>
-                    <th scope="col">Almacenamiento</th>
+                    @if (ViewBag.Categoria == "Telefonos")
+                    {
+                        <th scope="col">Almacenamiento</th>
+                    }
                     <th scope="col">Editar</th>
                     <th scope="col"><a asp-action="AgregaCaracteristicas" asp-controller="Admin" class="btn btn-primary text-white">Nuevo Producto</a></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @* @foreach (var u in Model)
+                @foreach (var u in Model.ProductosInter)
                 {
-                    <tr>
-                        <td>@u.</td>
-                        <td>@u.Nombre</td>
-                        <td>@u.Categoria</td>
-                        <td>
-                        <td>
-                            <a class="btn btn-primary text-white" asp-action="" asp-route-id="@u.ID" asp-route-accion="Editar">Agregar Productos</a>
-                        </td>
-                        </td>
-                    </tr>
-                } *@
+                    if(u.idproducto == ViewBag.Id)
+                    {
+                        <tr>
+                            <td>@u.Stock</td>
+                            @foreach(var c in Model.ProductoColors)
+                            {
+                                if(c.ID == u.idcolor)
+                                {
+                                    <td>@c.Color</td>
+                                }
+                            }
+                            @if (ViewBag.Categoria == "Telefonos")
+                            {
+                                @foreach (var a in Model.productoAlmacenamientos)
+                                {
+                                    if (a.ID == u.idalmacenamiento)
+                                    {
+                                        <td>@a.Almacenamineto</td>
+                                    }
+                                }
+                            }
+                            <td>
+                                <a class="btn btn-primary text-white" asp-action="EditarUsuarios" asp-route-id="@u.ID">Editar</a>
+                                <a class="btn btn-danger text-white" asp-action="EliminarUsuarios" asp-route-id="@u.ID">Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
