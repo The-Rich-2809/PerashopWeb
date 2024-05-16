@@ -5,6 +5,8 @@ using System.Net.Sockets;
 using Microsoft.AspNetCore.Http;
 using PeroShopWeb.Providers;
 using PeroShopWeb.Helpers;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace PeroShopWeb.Controllers
 {
@@ -182,6 +184,11 @@ namespace PeroShopWeb.Controllers
                 ProductoColors = listproductoColor,
                 productoAlmacenamientos = listproductoAlmacenamiento
             };
+
+
+            var jsoncolor = JsonConvert.SerializeObject(viewmodel);
+            ViewBag.json = jsoncolor;
+            ViewBag.idprod = IdProducto;
             Cookies();
             ViewBag.Categoria = CategoriaProducto;
             return View(viewmodel);
@@ -204,30 +211,66 @@ namespace PeroShopWeb.Controllers
             return RedirectToAction("Productos");
         }
 
+        [HttpGet]
+        public IActionResult EditarCaracteristicas()
+        {
+            List<ProductoColorAlamacenamientoInter> listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == IdProducto).ToList();
+            List<ProductoColor> listproductoColor = _contextDB.Colores.ToList();
+            List<ProductoAlmacenamiento> listproductoAlmacenamiento = _contextDB.Almacenamientos.ToList();
 
-            //[HttpPost]
-            //[ValidateAntiForgeryToken]
-            //public async Task<IActionResult> EditarUsuarios(IFormFile Imagen, Usuario usuario, string id, string Contrasena1, string Contrasena2)
-            //{
-            //    var usuarios = new UsuarioModel(_contextDB);
-            //    if (Imagen != null)
-            //    {
-            //        string nombreImagen = usuario.Correo + Imagen.FileName;
-            //        await this.helperUpload.UploadFilesAsync(Imagen, nombreImagen, Fold.Images);
-            //        usuario.DireccionImagen = "../Images/Usuarios/" + nombreImagen;
-            //    }
-            //    else
-            //    {
-            //        usuario.DireccionImagePerfil = FotoPerfil;
-            //    }
-            //    if (Contrasena1 != null)
-            //    {
-            //        usuario.Contrasena = Contrasena1;
-            //    }
+            var viewmodel = new ProductosViewModel
+            {
+                ProductosInter = listproductoInter,
+                ProductoColors = listproductoColor,
+                productoAlmacenamientos = listproductoAlmacenamiento
+            };
 
-            //    usuarios.EditarUsuario(usuario);
-            //    Cookies();
-            //    return RedirectToAction(nameof(Usuarios));
-            //}
+            Cookies();
+            ViewBag.Categoria = CategoriaProducto;
+            return View(viewmodel);
         }
+        [HttpPost]
+        public async Task<IActionResult> EditarCaracteristicas(ProductoColorAlamacenamientoInter productointer, IFormFile[] Imagen)
+        {
+            ProductoModel productoModel = new ProductoModel(_contextDB);
+            productointer.idproducto = IdProducto;
+            if (CategoriaProducto != "Telefonos")
+            {
+                productointer.idalmacenamiento = 1;
+            }
+
+            string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
+            await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
+
+            productointer.RutaImagen = "../Images/Products/" + nombreImagen;
+            productoModel.NuevasCaracteristicas(productointer);
+            return RedirectToAction("Productos");
+        }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> EditarUsuarios(IFormFile Imagen, Usuario usuario, string id, string Contrasena1, string Contrasena2)
+        //{
+        //    var usuarios = new UsuarioModel(_contextDB);
+        //    if (Imagen != null)
+        //    {
+        //        string nombreImagen = usuario.Correo + Imagen.FileName;
+        //        await this.helperUpload.UploadFilesAsync(Imagen, nombreImagen, Fold.Images);
+        //        usuario.DireccionImagen = "../Images/Usuarios/" + nombreImagen;
+        //    }
+        //    else
+        //    {
+        //        usuario.DireccionImagePerfil = FotoPerfil;
+        //    }
+        //    if (Contrasena1 != null)
+        //    {
+        //        usuario.Contrasena = Contrasena1;
+        //    }
+
+        //    usuarios.EditarUsuario(usuario);
+        //    Cookies();
+        //    return RedirectToAction(nameof(Usuarios));
+        //}
+    }
 }

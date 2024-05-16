@@ -3,6 +3,13 @@
     Layout = "_LayoutAdmin2";
 }
 
+<script>
+    function hola() {
+        var prueba = 'hola';
+        @ViewBag.prueba = prueba;
+    }
+</script>
+
 <body>
     <div class="row g-3">
         <div class="col-sm-6">
@@ -22,7 +29,7 @@
                     {
                         <th scope="col">Almacenamiento</th>
                     }
-                    <th scope="col">Editar</th>
+                    <th scope="col">Acciones</th>
                     <th scope="col"><a asp-action="AgregaCaracteristicas" asp-controller="Admin" class="btn btn-primary text-white">Nuevo Producto</a></th>
                 </tr>
             </thead>
@@ -51,7 +58,7 @@
                                 }
                             }
                             <td>
-                                <a class="btn btn-primary text-white" asp-action="EditarUsuarios" asp-route-id="@u.ID">Editar</a>
+                                <a class="btn btn-primary text-white" asp-action="EditarCaracteristicas" asp-route-id="@u.ID" onclick="hola()">Editar</a>
                                 <a class="btn btn-danger text-white" asp-action="EliminarUsuarios" asp-route-id="@u.ID">Borrar</a>
                             </td>
                         </tr>

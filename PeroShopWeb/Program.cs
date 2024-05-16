@@ -2,7 +2,6 @@ using PeroShopWeb.Models;
 using Microsoft.EntityFrameworkCore;
 using PeroShopWeb.Helpers;
 using PeroShopWeb.Providers;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
