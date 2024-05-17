@@ -2,9 +2,44 @@
 @{
     Layout = "_LayoutAdmin2";
 }
+
+
+
 <!DOCTYPE html>
+
 <html lang="en">
+    <head>
+    
+    </head>
 <body>
+    <script>
+
+        function actualizarCombobox() {
+            console.log('hola');
+            var lista = @Html.Raw(ViewBag.json);
+            var idprod = @Html.Raw(ViewBag.idprod);
+            var seleccion = document.getElementById("combobox1").value;
+            var combobox2 = document.getElementById("combobox2");
+
+            // Limpia las opciones existentes
+            combobox2.innerHTML = "";
+
+
+            for (var i in lista.ProductosInter) {
+                console.log('hola');
+                if (i.idcolor == seleccion) {
+                    console.log('hola';
+                    for (var o in lista.productoAlmacenamientos) {
+                        console.log('hola');
+                        if (o.ID != i.idalmacenamiento) {
+                            console.log('hola');
+                            combobox2.options.add(new Option(o.Almacenamineto, o.ID));
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <main class="container">
         <div class="my-3 p-3 bg-light rounded shadow-sm">
             <h1>Agregar caracteristicas</h1>
@@ -13,7 +48,7 @@
                     
                     <div class="col-md-5">
                         <label class="form-label">Almacenamiento del Producto</label>
-                        <select name="idalmacenamiento" class="form-select" id="combobox1" onchange="actualizarCombobox()" required>
+                        <select onchange="actualizarCombobox()" name="idalmacenamiento" class="form-select" id="combobox1" required>
                             <option value="">Almacenamiento...</option>
                             <option value="Opción 3">Opción 3</option>
                         </select>
@@ -98,58 +133,6 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="~/js/form-validation.js"></script>
-    <script>
-        function hola(){ 
-            console.log('hola');
-            var lista = @Html.Raw(ViewBag.json);
-            var idprod = @Html.Raw(ViewBag.idprod);
-            var seleccion = document.getElementById("combobox1").value;
-            var combobox2 = document.getElementById("combobox2");
-
-            // Limpia las opciones existentes
-            combobox2.innerHTML = "";
-
-
-            for (var i in lista.ProductosInter) {
-                console.log('hola');
-                if (i.idcolor == seleccion) {
-                    console.log('hola';
-                    for (var o in lista.productoAlmacenamientos) {
-                        console.log('hola');
-                        if (o.ID != i.idalmacenamiento) {
-                            console.log('hola');
-                            combobox2.options.add(new Option(o.Almacenamineto, o.ID));
-                        }
-                    }
-                }
-            }
-        }
-
-        function actualizarCombobox() {
-            console.log('hola');
-            var lista = @Html.Raw(ViewBag.json);
-            var idprod = @Html.Raw(ViewBag.idprod);
-            var seleccion = document.getElementById("combobox1").value;
-            var combobox2 = document.getElementById("combobox2");
-
-            // Limpia las opciones existentes
-            combobox2.innerHTML = "";
-
-
-            for (var i in lista.ProductosInter) {
-                console.log('hola');
-                if (i.idcolor == seleccion) {
-                    console.log('hola';
-                    for (var o in lista.productoAlmacenamientos) {
-                        console.log('hola');
-                        if (o.ID != i.idalmacenamiento) {
-                            console.log('hola');
-                            combobox2.options.add(new Option(o.Almacenamineto, o.ID));
-                        }
-                    }
-                }
-            }
-        };
-    </script>
+    
 </body>
 </html>
