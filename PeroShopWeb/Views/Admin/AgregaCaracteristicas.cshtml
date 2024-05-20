@@ -9,57 +9,50 @@
 
 <html lang="en">
     <head>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Check if ViewBag.Mensaje is not empty and show an alert
+            var mensaje = '@ViewBag.Error';
+            if (mensaje && mensaje.trim().length > 0) {
+                alert(mensaje);
+            }
+
+            $('#combobox1').on("change", function () {
+                var valor = $(this).val();
+                var idprod = '@ViewBag.idprod';
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/Combos/ValorCombos',
+                    data: { valor: valor, idprod: idprod },
+                    success: function (response) {
+                        var data = response;
+                        var combobox2 = $('#combobox2');
+                        combobox2.empty();
+                        $.each(data, function (index, item) {
+                            combobox2.append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
     </head>
 <body>
-    <script>
-
-        function actualizarCombobox() {
-            console.log('hola');
-            var lista = @Html.Raw(ViewBag.json);
-            var idprod = @Html.Raw(ViewBag.idprod);
-            var seleccion = document.getElementById("combobox1").value;
-            var combobox2 = document.getElementById("combobox2");
-
-            // Limpia las opciones existentes
-            combobox2.innerHTML = "";
-
-
-            for (var i in lista.ProductosInter) {
-                console.log('hola');
-                if (i.idcolor == seleccion) {
-                    console.log('hola';
-                    for (var o in lista.productoAlmacenamientos) {
-                        console.log('hola');
-                        if (o.ID != i.idalmacenamiento) {
-                            console.log('hola');
-                            combobox2.options.add(new Option(o.Almacenamineto, o.ID));
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <main class="container">
         <div class="my-3 p-3 bg-light rounded shadow-sm">
             <h1>Agregar caracteristicas</h1>
             <form class="needs-validation" novalidate method="post" enctype="multipart/form-data">
                 <div class="row g-3">
-                    
-                    <div class="col-md-5">
-                        <label class="form-label">Almacenamiento del Producto</label>
-                        <select onchange="actualizarCombobox()" name="idalmacenamiento" class="form-select" id="combobox1" required>
-                            <option value="">Almacenamiento...</option>
-                            <option value="Opción 3">Opción 3</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Seleccione un Almacenamiento válida.
-                        </div>
-                    </div>
-
                     <div class="col-md-5">
                         <label class="form-label">Color del Producto</label>
-                        <select name="idcolor" class="form-select" id="combobox1" onchange="actualizarCombobox()" required>
+                        <select name="idcolor" class="form-select" id="combobox1" required>
                             <option value="">Color...</option>
                             @foreach(var u in Model.ProductoColors){
                                 <option value="@u.ID">@u.Color</option>

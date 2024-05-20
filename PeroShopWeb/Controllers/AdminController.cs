@@ -185,9 +185,6 @@ namespace PeroShopWeb.Controllers
                 productoAlmacenamientos = listproductoAlmacenamiento
             };
 
-
-            var jsoncolor = JsonConvert.SerializeObject(viewmodel);
-            ViewBag.json = jsoncolor;
             ViewBag.idprod = IdProducto;
             Cookies();
             ViewBag.Categoria = CategoriaProducto;
@@ -197,18 +194,27 @@ namespace PeroShopWeb.Controllers
         public async Task<IActionResult> AgregaCaracteristicas(ProductoColorAlamacenamientoInter productointer, IFormFile[] Imagen)
         {
             ProductoModel productoModel = new ProductoModel(_contextDB);
-            productointer.idproducto = IdProducto;
-            if(CategoriaProducto != "Telefonos")
+
+            if (productointer.idalmacenamiento == 1)
             {
-                productointer.idalmacenamiento = 1;
+                ViewBag.Error = "Seleccione un almacenamiento valido";
+                return RedirectToAction("AgregaCaracteristicas");
             }
+            else
+            {
+                productointer.idproducto = IdProducto;
+                if (CategoriaProducto != "Telefonos")
+                {
+                    productointer.idalmacenamiento = 1;
+                }
 
-            string nombreImagen = + productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
-            await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
+                string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
+                await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
 
-            productointer.RutaImagen = "../Images/Products/" + nombreImagen;
-            productoModel.NuevasCaracteristicas(productointer);
-            return RedirectToAction("Productos");
+                productointer.RutaImagen = "../Images/Products/" + nombreImagen;
+                productoModel.NuevasCaracteristicas(productointer);
+                return RedirectToAction("Productos");
+            }
         }
 
         [HttpGet]
