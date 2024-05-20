@@ -12,11 +12,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            // Check if ViewBag.Mensaje is not empty and show an alert
-            var mensaje = '@ViewBag.Error';
-            if (mensaje && mensaje.trim().length > 0) {
-                alert(mensaje);
-            }
 
             $('#combobox1').on("change", function () {
                 var valor = $(this).val();

@@ -21,14 +21,19 @@ namespace PeroShopWeb.Controllers
             var listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == idprod).ToList();
             var listaalmacenamiento = _contextDB.Almacenamientos.ToList();
 
+            // Crear un conjunto para almacenar los IDs de almacenamiento relacionados con el color especificado
+            var almacenamientosRelacionados = new HashSet<int>();
+
             foreach (var i in listproductoInter)
             {
                 if (valor == i.idcolor)
                 {
-                    listaalmacenamiento.RemoveAt(i.idalmacenamiento-1);
+                    almacenamientosRelacionados.Add(i.idalmacenamiento);
                 }
             }
 
+            // Mantener solo los almacenamientos que no están en el conjunto almacenamientosRelacionados
+            listaalmacenamiento = listaalmacenamiento.Where(a => !almacenamientosRelacionados.Contains(a.ID)).ToList();
 
             var items = listaalmacenamiento.Select(a => new ComboBoxItem
             {
@@ -38,7 +43,50 @@ namespace PeroShopWeb.Controllers
 
             return items;
         }
+
+        [HttpGet("DetalleCombos")]
+        public ActionResult<DetalleCombosResponse> DetalleCombos(int valor, int idprod)
+        {
+            var listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == idprod).ToList();
+            var listaalmacenamiento = _contextDB.Almacenamientos.ToList();
+
+            var almacenamientosRelacionados = new HashSet<int>();
+            string imageUrl = null;
+
+            foreach (var i in listproductoInter)
+            {
+                if (valor == i.idcolor)
+                {
+                    almacenamientosRelacionados.Add(i.idalmacenamiento);
+                    imageUrl = i.RutaImagen; // Asigna la URL de la imagen del color seleccionado
+                }
+            }
+
+            listaalmacenamiento = listaalmacenamiento.Where(a => almacenamientosRelacionados.Contains(a.ID)).ToList();
+
+            var items = listaalmacenamiento.Select(a => new ComboBoxItem
+            {
+                Value = a.ID,
+                Text = a.Almacenamineto
+            }).ToList();
+
+            var response = new DetalleCombosResponse
+            {
+                Items = items,
+                ImageUrl = imageUrl
+            };
+
+            return response;
+        }
+
     }
+
+    public class DetalleCombosResponse
+    {
+        public List<ComboBoxItem> Items { get; set; }
+        public string ImageUrl { get; set; }
+    }
+
     public class ComboBoxItem
     {
         public int Value { get; set; }
