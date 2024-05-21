@@ -67,7 +67,9 @@ namespace PeroShopWeb.Controllers
             var items = listaalmacenamiento.Select(a => new ComboBoxItem
             {
                 Value = a.ID,
-                Text = a.Almacenamineto
+                Text = a.Almacenamineto,
+                MaxQuantity = listproductoInter.FirstOrDefault(p => p.idcolor == valor && p.idalmacenamiento == a.ID)?.Stock ?? 0,
+                ProductInterId = listproductoInter.FirstOrDefault(p => p.idcolor == valor && p.idalmacenamiento == a.ID)?.ID ?? 0
             }).ToList();
 
             var response = new DetalleCombosResponse
@@ -81,15 +83,18 @@ namespace PeroShopWeb.Controllers
 
     }
 
+    public class ComboBoxItem
+    {
+        public int Value { get; set; }
+        public string Text { get; set; }
+        public int MaxQuantity { get; set; }
+        public int ProductInterId { get; set; }
+    }
+
     public class DetalleCombosResponse
     {
         public List<ComboBoxItem> Items { get; set; }
         public string ImageUrl { get; set; }
     }
 
-    public class ComboBoxItem
-    {
-        public int Value { get; set; }
-        public string Text { get; set; }
-    }
 }

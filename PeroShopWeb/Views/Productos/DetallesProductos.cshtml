@@ -1,15 +1,29 @@
 ﻿@model PeroShopWeb.Models.ProductosViewModel
 
 @{
+    if (ViewBag.Nivel == "Admin")
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else if (ViewBag.Nivel == "Cliente")
+    {
+        Layout = "_LayoutUsers";
+    }
+
     var uniqueColors = new HashSet<int>();
 }
 
 <!DOCTYPE html>
 <html>
 <head>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            let maxQuantity = 1;
+            let productInterId = null;
+            let imageUrl = '';
+
             $('#combobox1').on("change", function () {
                 var valor = $(this).val();
                 var idprod = '@ViewBag.idprod';
@@ -19,7 +33,7 @@
                     data: { valor: valor, idprod: idprod },
                     success: function (response) {
                         var data = response.items;
-                        var imageUrl = response.imageUrl;
+                        imageUrl = response.imageUrl;
                         var combobox2 = $('#combobox2');
                         combobox2.empty();
                         combobox2.append($('<option>', {
@@ -29,13 +43,16 @@
                         $.each(data, function (index, item) {
                             combobox2.append($('<option>', {
                                 value: item.value,
-                                text: item.text
+                                text: item.text,
+                                'data-max-quantity': item.maxQuantity,
+                                'data-product-inter-id': item.productInterId
                             }));
                         });
 
-                        // Actualizar la imagen basada en el color seleccionado
                         if (imageUrl) {
                             $('#product-image').attr('src', imageUrl);
+                            // Update hidden input with image URL
+                            $('input[name="RutaImagen"]').val(imageUrl);
                         }
                     },
                     error: function (error) {
@@ -43,9 +60,36 @@
                     }
                 });
             });
+
+            $('#combobox2').on("change", function () {
+                var selectedOption = $(this).find('option:selected');
+                maxQuantity = selectedOption.data('max-quantity') || 1;
+                productInterId = selectedOption.data('product-inter-id') || null;
+                var quantityInput = $('input[name="Cantidad"]');
+                quantityInput.val(1);  // Reset quantity to 1 on storage change
+
+                // Update the stock display
+                $('#stock').text('Stock: ' + maxQuantity);
+            });
+
+            $('.btn-minus').click(function () {
+                var quantityInput = $(this).closest('.quantity').find('input[name="Cantidad"]');
+                var currentValue = parseInt(quantityInput.val());
+                if (currentValue > 1) {
+                    quantityInput.val(currentValue - 1);
+                }
+            });
+
+            $('.btn-plus').click(function () {
+                var quantityInput = $(this).closest('.quantity').find('input[name="Cantidad"]');
+                var currentValue = parseInt(quantityInput.val());
+                if (currentValue < maxQuantity) {
+                    quantityInput.val(currentValue + 1);
+                }
+            });
+
+            // Optionally, use productInterId in your form submission or elsewhere
         });
-
-
     </script>
 </head>
 <body>
@@ -70,13 +114,14 @@
                         </div>
                         <div class="col-lg-7 h-auto mb-30">
                             <div class="h-100 bg-light p-30">
-                                <h3>@ViewBag.NombreProducto</h3>
+                                <h3 name="Nombre">@ViewBag.NombreProducto</h3>
                                 <h3 class="font-weight-semi-bold mb-4">@u.PrecioVenta</h3>
+                                <h3 class="font-weight-semi-bold mb-4" id="stock">Stock: </h3>
                                 <div class="d-flex mb-4">
                                     <strong class="text-dark mr-3">Colores:</strong>
                                     <form>
                                         <div class="custom-control custom-radio input-group mb-3">
-                                            <select class="form-select" id="combobox1" required style="width: 100%; max-width: 400px;">
+                                            <select name="Color" class="form-select" id="combobox1" required style="width: 100%; max-width: 400px;">
                                                 <option value="">Colores...</option>
                                                 @foreach (var f in Model.ProductosInter)
                                                 {
@@ -101,7 +146,7 @@
                                         <div class="custom-control custom-radio input-group mb-3">
                                             @if (ViewBag.Categoria == "Telefonos")
                                             {
-                                                <select name="idalmacenamiento" class="form-select" id="combobox2" required style="width: 100%; max-width: 400px;">
+                                                <select name="Almacenamiento" class="form-select" id="combobox2" required style="width: 100%; max-width: 400px;">
                                                     <option value="">Almacenamiento...</option>
                                                 </select>
                                             }
@@ -109,22 +154,27 @@
                                     </form>
                                 </div>
                                 <div class="d-flex align-items-center mb-4 pt-2">
-                                    <div class="input-group quantity mr-3" style="width: 130px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary btn-minus">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
+                                    <form asp-action="DetallesProductos" asp-controller="Productos">
+                                        <div class="input-group quantity mr-3 custom-control-inline" style="width: 130px;">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-minus">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" name="Cantidad" class="form-control bg-secondary border-0 text-center" value="1">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-plus">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary btn-plus">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary px-3">
-                                        <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
-                                    </button>
+                                        <button class="btn btn-primary px-3">
+                                            <i class="fa fa-shopping-cart mr-1 custom-control-inline"></i> Add To Cart
+                                        </button>
+                                        <input type="hidden" name="RutaImagen" value="@u.RutaImagen" />
+                                        <input type="hidden" name="idproductointer" value="@u.ID" />
+                                        <input type="hidden" name="Nombre" value="@ViewBag.NombreProducto" />
+                                    </form>
                                 </div>
                             </div>
                         </div>

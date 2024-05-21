@@ -43,9 +43,9 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Home</a>
-                                <a class="nav-item nav-link active" href="@Url.Action("ListaProductos", "Productos", new { valor = "Audifonos" })">Audifonos</a>
-                                <a class="nav-item nav-link active" href="@Url.Action("ListaProductos", "Productos", new { valor = "Telefonos" })">Telefonos</a>
-                                <a class="nav-item nav-link active" href="@Url.Action("ListaProductos", "Productos", new { valor = "Fundas" })">Fundas</a>
+                                <a class="nav-item nav-link active" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Audifonos">Audifonos</a>
+                                <a class="nav-item nav-link active" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Telefonos">Telefonos</a>
+                                <a class="nav-item nav-link active" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Fundas">Fundas</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                                 <a href="" class="btn px-0">

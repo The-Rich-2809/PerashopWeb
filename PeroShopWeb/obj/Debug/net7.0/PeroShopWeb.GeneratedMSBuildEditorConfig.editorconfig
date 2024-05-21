@@ -78,6 +78,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Productos/Carrito.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXENhcnJpdG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Productos/DetallesProductos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXERldGFsbGVzUHJvZHVjdG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
