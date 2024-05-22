@@ -79,13 +79,16 @@ namespace PeroShopWeb.Controllers
 
             foreach (var item in listacarritoventa)
             {
-                if (item.idproductointer == carritoVenta.idproductointer)
+                if (item.idusuario == IdUser)
                 {
-                    carritoVenta.Cantidad += item.Cantidad;
-                    _ContextoDB.CarritoVenta.Remove(item);
-                    _ContextoDB.SaveChanges();
+                    if (item.idproductointer == carritoVenta.idproductointer)
+                    {
+                        carritoVenta.Cantidad += item.Cantidad;
+                        _ContextoDB.CarritoVenta.Remove(item);
+                        _ContextoDB.SaveChanges();
+                    }
+                    t++;
                 }
-                t++;
             }
             if (listacarritoventa.Count == t)
             {

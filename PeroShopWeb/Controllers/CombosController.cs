@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PeroShopWeb.Models;
 
 namespace PeroShopWeb.Controllers
@@ -81,6 +82,17 @@ namespace PeroShopWeb.Controllers
             return response;
         }
 
+        [HttpGet("GetMaxQuantity")]
+        public IActionResult GetMaxQuantity(int productInterId)
+        {
+            var productInter = _contextDB.ProductoInter.FirstOrDefault(p => p.ID == productInterId);
+            if (productInter == null)
+            {
+                return NotFound(new { message = "Product not found" });
+            }
+
+            return Ok(new { maxQuantity = productInter.Stock });
+        }
     }
 
     public class ComboBoxItem
