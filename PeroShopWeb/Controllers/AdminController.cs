@@ -75,7 +75,7 @@ namespace PeroShopWeb.Controllers
         [HttpGet]
         public IActionResult Ventas()
         {
-            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.ToList();
+            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.Where(c => c.Cambio == 2).ToList();
             Cookies();
             return View(listaventas);
         }
@@ -122,9 +122,9 @@ namespace PeroShopWeb.Controllers
         [HttpGet]
         public IActionResult VentasTerminada()
         {
-            List<CarritoVenta> inter = _contextDB.CarritoVenta.ToList();
+            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.Where(c => c.Cambio == 2 && c.Envio == "Tu paquete a sido entregado").ToList();
             Cookies();
-            return View(inter);
+            return View(listaventas);
         }
         [HttpGet]
         public IActionResult Productos()

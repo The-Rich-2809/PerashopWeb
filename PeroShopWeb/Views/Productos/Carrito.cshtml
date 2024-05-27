@@ -9,6 +9,10 @@
     {
         Layout = "_LayoutCliente";
     }
+    int totalItems = Model.CarritoVentas.Count(c => c.idusuario == ViewBag.IdUser);
+    decimal totalPrice = Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser).Sum(c => c.Total);
+    decimal shippingCost = 10.00m;
+    decimal totalToPay = totalPrice + shippingCost;
 }
 
 <div class="container-fluid">
@@ -33,38 +37,41 @@
                             {
                                 if (i.ID == u.idproductointer)
                                 {
-                                    <tr>
-                                        <td class="align-middle">
-                                            <img src="@u.RutaImagen" alt="" style="width: 50px;"> @u.Nombre
-                                        </td>
-                                        <td class="align-middle">@i.PrecioVenta</td>
-                                        <td class="align-middle">
-                                            <div class="input-group quantity mx-auto" style="width: 100px;">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-sm btn-primary btn-minus" data-product-inter-id="@i.ID">
-                                                        <i class="fa fa-minus"></i>
-                                                    </button>
+                                    if (u.Cambio == 1)
+                                    {
+                                        <tr>
+                                            <td class="align-middle">
+                                                <img src="@u.RutaImagen" alt="" style="width: 50px;"> @u.Nombre
+                                            </td>
+                                            <td class="align-middle">@i.PrecioVenta</td>
+                                            <td class="align-middle">
+                                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-primary btn-minus" data-product-inter-id="@i.ID">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text"
+                                                           class="form-control form-control-sm bg-secondary border-0 text-center"
+                                                           value="@u.Cantidad" data-product-inter-id="@i.ID">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-primary btn-plus" data-product-inter-id="@i.ID">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <input type="text"
-                                                       class="form-control form-control-sm bg-secondary border-0 text-center"
-                                                       value="@u.Cantidad" data-product-inter-id="@i.ID">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-sm btn-primary btn-plus" data-product-inter-id="@i.ID">
-                                                        <i class="fa fa-plus"></i>
+                                            </td>
+                                            <td class="align-middle total-cell" data-total="@(u.Cantidad * i.PrecioVenta)">@(u.Cantidad * i.PrecioVenta)</td>
+                                            <td class="align-middle">
+                                                <form asp-controller="Productos" asp-action="EliminarCarrito" method="get">
+                                                    <input type="hidden" name="id" value="@u.ID" />
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fa fa-times"></i>
                                                     </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">@(u.Cantidad * i.PrecioVenta)</td>
-                                        <td class="align-middle">
-                                            <form asp-controller="Productos" asp-action="EliminarCarrito" method="get">
-                                                <input type="hidden" name="id" value="@u.ID" />
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
                             }
                         }
@@ -73,37 +80,50 @@
             </table>
         </div>
 
-        <h5 class="section-title position-relative text-uppercase mb-3">
-            <span class="bg-secondary pr-3">
-                Cart
-                Summary
-            </span>
-        </h5>
-        <div class="bg-light p-30 mb-5">
-            <div class="border-bottom pb-2">
-                <div class="d-flex justify-content-between mb-3">
-                    <h6>Subtotal</h6>
-                    <h6>$0</h6>
+        <form method="post">
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3">
+                    <span class="bg-secondary pr-3">
+                        Cart Summary
+                    </span>
+                </h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Subtotal</h6>
+                        <h6 id="subtotal">$@totalPrice</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Total</h5>
+                            <h5 id="total-to-pay">$@totalToPay</h5>
+                        </div>
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" asp-action="Registro" asp-controller="Compras">Ir al Checkout</button>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <h6 class="font-weight-medium">Shipping</h6>
-                    <h6 class="font-weight-medium">$10</h6>
-                </div>
-            </div>
-            <div class="pt-2">
-                <div class="d-flex justify-content-between mt-2">
-                    <h5>Total</h5>
-                    <h5>$0</h5>
-                </div>
-                <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
-            </div>
+        </form>
         </div>
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        function updateTotals() {
+            var subtotal = 0;
+            $('.total-cell').each(function () {
+                subtotal += parseFloat($(this).data('total'));
+            });
+            $('#subtotal').text('$' + subtotal.toFixed(2));
+            var shippingCost = 10.00; // Assuming shipping cost is fixed
+            var totalToPay = subtotal + shippingCost;
+            $('#total-to-pay').text('$' + totalToPay.toFixed(2));
+        }
+
         $('.btn-minus, .btn-plus').click(function () {
             var isIncrement = $(this).hasClass('btn-plus');
             var productInterId = $(this).data('product-inter-id');
@@ -118,15 +138,27 @@
                     var maxQuantity = response.maxQuantity;
 
                     if (isIncrement && currentValue < maxQuantity) {
-                        quantityInput.val(currentValue + 1);
+                        currentValue++;
+                        quantityInput.val(currentValue);
                     } else if (!isIncrement && currentValue > 1) {
-                        quantityInput.val(currentValue - 1);
+                        currentValue--;
+                        quantityInput.val(currentValue);
                     }
+
+                    var price = parseFloat(quantityInput.closest('tr').find('td:eq(1)').text());
+                    var total = currentValue * price;
+                    quantityInput.closest('tr').find('.total-cell').text(total.toFixed(2)).data('total', total);
+
+                    updateTotals();
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
         });
+
+        // Initial call to set totals on page load
+        updateTotals();
     });
 </script>
+
