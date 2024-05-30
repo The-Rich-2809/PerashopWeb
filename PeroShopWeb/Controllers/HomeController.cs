@@ -151,9 +151,9 @@ namespace PeroShopWeb.Controllers
 
             var insertarusuarios = new Usuario[]
                 {
-                    new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"},
-                    new Usuario() {Correo = "ricardo_138@outlook.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Rich.jpg", Nombre = "Rich"},
-                    new Usuario() {Correo = "a@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", iddireccion = 1, DireccionImagen = "../Images/Usuarios/Usuario.jpg", Nombre = "A"}
+                    new Usuario() {Correo = "aserranoacosta841@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", NumeroTelefono = "5555555555", DireccionImagen = "../Images/Usuarios/Alejandro.jpg", Nombre = "Alejandro"},
+                    new Usuario() {Correo = "ricardo_138@outlook.com", Contrasena = "1234", TipoUsuario = "Admin", NumeroTelefono = "5555555555", DireccionImagen = "../Images/Usuarios/Rich.jpg", Nombre = "Rich"},
+                    new Usuario() {Correo = "a@gmail.com", Contrasena = "1234", TipoUsuario = "Admin", NumeroTelefono = "5555555555", DireccionImagen = "../Images/Usuarios/Usuario.jpg", Nombre = "A"}
                 };
             var insertarProveedor = new Proveedores[]
                 {

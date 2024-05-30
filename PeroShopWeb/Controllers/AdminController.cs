@@ -83,8 +83,6 @@ namespace PeroShopWeb.Controllers
         public IActionResult DetalleVenta(int id, int idord, string envio)
         {
             var usrtemp = _contextDB.Usuario.FirstOrDefault(d => d.ID == id);
-
-            ViewBag.Direccion = _contextDB.Direccion.FirstOrDefault(d => d.iD == usrtemp.iddireccion);
             ViewBag.Productos = _contextDB.Producto.ToList();
             ViewBag.CarrVen = _contextDB.CarritoVenta.ToList();
             ViewBag.inter = _contextDB.ProductoInter.ToList();

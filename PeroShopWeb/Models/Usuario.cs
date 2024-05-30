@@ -13,9 +13,6 @@ namespace PeroShopWeb.Models
         public string DireccionImagen { get; set; }
         public string Nombre { get; set; }
         public string TipoUsuario { get; set; }
-        public int iddireccion { get; set; }
-
-        [ForeignKey("iddireccion")]
-        public virtual Direccion Direccion { get; set; }
+        public string NumeroTelefono { get; set; }
     }
 }
