@@ -33,8 +33,32 @@
       "PackagePath": "staticwebassets\\Images\\Products\\AirpodsM.jpg"
     },
     {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Fundas.png",
+      "PackagePath": "staticwebassets\\Images\\Products\\Fundas.png"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Magsafe.png",
+      "PackagePath": "staticwebassets\\Images\\Products\\Magsafe.png"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\carusel 1.png",
+      "PackagePath": "staticwebassets\\Images\\Products\\carusel 1.png"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\carusel 2.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\carusel 2.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\carusel 3.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\carusel 3.jpg"
+    },
+    {
       "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\iphone12.jpg",
       "PackagePath": "staticwebassets\\Images\\Products\\iphone12.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\peraphone 15.mp4",
+      "PackagePath": "staticwebassets\\Images\\Products\\peraphone 15.mp4"
     },
     {
       "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\css\\login.css",
