@@ -1,0 +1,150 @@
+﻿@model PeroShopWeb.Models.ProductosViewModel
+@{
+    if (ViewBag.Nivel == "Admin")
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else if (ViewBag.Nivel == "Cliente")
+    {
+        Layout = "_LayoutCliente";
+    }
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con PayPal</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=AX8j98ARtmlp973Syj12rwUjMabwJd2IXIb12oIyVo7NJwVOb5YiQS6pyBOVQRbzBtedhkC_IONs2OQO&currency=MXN"></script>
+    <script>
+        paypal.Buttons({
+            style: {
+                shape: 'pill',
+                label: 'pay'
+            },
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: 100
+                        }
+                    }]
+                });
+
+            },
+            onApprove: function (data, actions) {
+                actions.order.capture().then(function (detalles) {
+                    console.log(detalles);
+                    window.location.href = "CompraRealizada";
+                });
+            },
+
+            onCancel: function (data) {
+                alert("Pago Cancelado");
+                console.log(data);
+            }
+
+        }).render('#paypal-button-container')
+    </script>
+
+    <style>
+        .payment-method {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #paypal-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+            #paypal-button-container > div {
+                width: 100%;
+                max-width: 400px;
+                padding: 55px 50px;
+                font-size: 18px;
+                margin: 0 auto;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="row">
+                        @{
+                            foreach (var i in ViewBag.listaususuarios)
+                            {
+                                if (i.ID == ViewBag.IdUser)
+                                {
+                                        <dl class="row">
+                                            <dt class="col-sm-2">
+                                                Nombre
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @i.Nombre
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                Email
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @i.Correo
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                Telefono
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @i.NumeroTelefono
+                                            </dd>
+                                        </dl>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Total de la orden</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom">
+                        <h6 class="mb-3">Products</h6>
+                        @foreach (var u in Model.CarritoVentas)
+                        {
+                            if (ViewBag.IdUser == u.idusuario)
+                            {
+                                @foreach (var i in Model.ProductosInter)
+                                {
+                                    if (i.ID == u.idproductointer)
+                                    {
+                                        if (u.Cambio == 1)
+                                        {
+                                            <div class="d-flex justify-content-between">
+                                                <p>@u.Nombre</p>
+                                                <p data-total="@(u.Cantidad * i.PrecioVenta)">$@(u.Cantidad * i.PrecioVenta)</p>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="mb-5">
+                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Metodos de Pago</span></h5>
+                        <div class="bg-light p-30">
+                            <div class="form-group payment-method">
+                                <div class="custom-control custom-radio" style="padding-right: 30px">
+                                    <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                    <label id="paypal-button-container"></label>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

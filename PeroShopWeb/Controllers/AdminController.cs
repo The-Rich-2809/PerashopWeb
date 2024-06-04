@@ -5,6 +5,8 @@ using System.Net.Sockets;
 using Microsoft.AspNetCore.Http;
 using PeroShopWeb.Providers;
 using PeroShopWeb.Helpers;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace PeroShopWeb.Controllers
 {
@@ -73,7 +75,7 @@ namespace PeroShopWeb.Controllers
         [HttpGet]
         public IActionResult Ventas()
         {
-            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.ToList();
+            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.Where(c => c.Cambio == 2).ToList();
             Cookies();
             return View(listaventas);
         }
@@ -81,8 +83,6 @@ namespace PeroShopWeb.Controllers
         public IActionResult DetalleVenta(int id, int idord, string envio)
         {
             var usrtemp = _contextDB.Usuario.FirstOrDefault(d => d.ID == id);
-
-            ViewBag.Direccion = _contextDB.Direccion.FirstOrDefault(d => d.iD == usrtemp.iddireccion);
             ViewBag.Productos = _contextDB.Producto.ToList();
             ViewBag.CarrVen = _contextDB.CarritoVenta.ToList();
             ViewBag.inter = _contextDB.ProductoInter.ToList();
@@ -120,9 +120,9 @@ namespace PeroShopWeb.Controllers
         [HttpGet]
         public IActionResult VentasTerminada()
         {
-            List<CarritoVenta> inter = _contextDB.CarritoVenta.ToList();
+            List<CarritoVenta> listaventas = _contextDB.CarritoVenta.Where(c => c.Cambio == 2 && c.Envio == "Tu paquete a sido entregado").ToList();
             Cookies();
-            return View(inter);
+            return View(listaventas);
         }
         [HttpGet]
         public IActionResult Productos()
@@ -182,6 +182,8 @@ namespace PeroShopWeb.Controllers
                 ProductoColors = listproductoColor,
                 productoAlmacenamientos = listproductoAlmacenamiento
             };
+
+            ViewBag.idprod = IdProducto;
             Cookies();
             ViewBag.Categoria = CategoriaProducto;
             return View(viewmodel);
@@ -190,13 +192,58 @@ namespace PeroShopWeb.Controllers
         public async Task<IActionResult> AgregaCaracteristicas(ProductoColorAlamacenamientoInter productointer, IFormFile[] Imagen)
         {
             ProductoModel productoModel = new ProductoModel(_contextDB);
+
+            if (productointer.idalmacenamiento == 1)
+            {
+                ViewBag.Error = "Seleccione un almacenamiento valido";
+                return RedirectToAction("AgregaCaracteristicas");
+            }
+            else
+            {
+                productointer.idproducto = IdProducto;
+                if (CategoriaProducto != "Telefonos")
+                {
+                    productointer.idalmacenamiento = 1;
+                }
+
+                string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
+                await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
+
+                productointer.RutaImagen = "../Images/Products/" + nombreImagen;
+                productoModel.NuevasCaracteristicas(productointer);
+                return RedirectToAction("Productos");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult EditarCaracteristicas()
+        {
+            List<ProductoColorAlamacenamientoInter> listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == IdProducto).ToList();
+            List<ProductoColor> listproductoColor = _contextDB.Colores.ToList();
+            List<ProductoAlmacenamiento> listproductoAlmacenamiento = _contextDB.Almacenamientos.ToList();
+
+            var viewmodel = new ProductosViewModel
+            {
+                ProductosInter = listproductoInter,
+                ProductoColors = listproductoColor,
+                productoAlmacenamientos = listproductoAlmacenamiento
+            };
+
+            Cookies();
+            ViewBag.Categoria = CategoriaProducto;
+            return View(viewmodel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditarCaracteristicas(ProductoColorAlamacenamientoInter productointer, IFormFile[] Imagen)
+        {
+            ProductoModel productoModel = new ProductoModel(_contextDB);
             productointer.idproducto = IdProducto;
-            if(CategoriaProducto != "Telefonos")
+            if (CategoriaProducto != "Telefonos")
             {
                 productointer.idalmacenamiento = 1;
             }
 
-            string nombreImagen = + productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
+            string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
             await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
 
             productointer.RutaImagen = "../Images/Products/" + nombreImagen;
@@ -205,29 +252,29 @@ namespace PeroShopWeb.Controllers
         }
 
 
-            //[HttpPost]
-            //[ValidateAntiForgeryToken]
-            //public async Task<IActionResult> EditarUsuarios(IFormFile Imagen, Usuario usuario, string id, string Contrasena1, string Contrasena2)
-            //{
-            //    var usuarios = new UsuarioModel(_contextDB);
-            //    if (Imagen != null)
-            //    {
-            //        string nombreImagen = usuario.Correo + Imagen.FileName;
-            //        await this.helperUpload.UploadFilesAsync(Imagen, nombreImagen, Fold.Images);
-            //        usuario.DireccionImagen = "../Images/Usuarios/" + nombreImagen;
-            //    }
-            //    else
-            //    {
-            //        usuario.DireccionImagePerfil = FotoPerfil;
-            //    }
-            //    if (Contrasena1 != null)
-            //    {
-            //        usuario.Contrasena = Contrasena1;
-            //    }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> EditarUsuarios(IFormFile Imagen, Usuario usuario, string id, string Contrasena1, string Contrasena2)
+        //{
+        //    var usuarios = new UsuarioModel(_contextDB);
+        //    if (Imagen != null)
+        //    {
+        //        string nombreImagen = usuario.Correo + Imagen.FileName;
+        //        await this.helperUpload.UploadFilesAsync(Imagen, nombreImagen, Fold.Images);
+        //        usuario.DireccionImagen = "../Images/Usuarios/" + nombreImagen;
+        //    }
+        //    else
+        //    {
+        //        usuario.DireccionImagePerfil = FotoPerfil;
+        //    }
+        //    if (Contrasena1 != null)
+        //    {
+        //        usuario.Contrasena = Contrasena1;
+        //    }
 
-            //    usuarios.EditarUsuario(usuario);
-            //    Cookies();
-            //    return RedirectToAction(nameof(Usuarios));
-            //}
-        }
+        //    usuarios.EditarUsuario(usuario);
+        //    Cookies();
+        //    return RedirectToAction(nameof(Usuarios));
+        //}
+    }
 }
