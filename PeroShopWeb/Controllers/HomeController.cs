@@ -20,6 +20,8 @@ namespace PeroShopWeb.Controllers
         {
             Initialize();
 
+            int IdUser = 0;
+
             var miCookie = HttpContext.Request.Cookies["MiCookie"];
 
             if (miCookie != null)
@@ -29,12 +31,19 @@ namespace PeroShopWeb.Controllers
                 {
                     if (miCookie == user.Correo)
                     {
+                        IdUser = user.ID;
                         ViewBag.Nombre = user.Nombre;
                         ViewBag.Nivel = user.TipoUsuario;
                         ViewBag.FotoPerfil = user.DireccionImagen;
                     }
                 }
             }
+            int conteo = _contextDB.CarritoVenta
+            .Where(c => c.Cambio == 1 && c.idusuario == IdUser)
+            .Count();
+
+            ViewBag.conteo = conteo;
+
 
             var inter = _contextDB.ProductoInter.ToList();
             var producto = _contextDB.Producto.OrderByDescending(c => c.Fecha).ToList();
@@ -95,6 +104,7 @@ namespace PeroShopWeb.Controllers
             register.Correo = Usuario.Correo;
             register.Contrasena = Usuario.Contrasena;
             register.Contrasena2 = Contrasena2;
+            register.Telefono = Usuario.NumeroTelefono;
             UsuarioModel.Nombre = Usuario.Nombre;
 
             if (register.Register())
@@ -183,16 +193,16 @@ namespace PeroShopWeb.Controllers
                 {
                     new ProductoColorAlamacenamientoInter() {idproducto = 1, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Airpods1.jpeg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 3500},
                     new ProductoColorAlamacenamientoInter() {idproducto = 2, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Airpods2.jpeg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 4000},
-                    new ProductoColorAlamacenamientoInter() {idproducto = 3, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Airpods3.jpg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 5000},
+                    new ProductoColorAlamacenamientoInter() {idproducto = 3, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/AirpodsPro.jpg", Caracteristicas = "Sin cables y sin esfuerzo.\r\nComo por arte de magia.", PrecioCompra = 200, PrecioVenta = 5000},
                     new ProductoColorAlamacenamientoInter() {idproducto = 4, idcolor = 1, idalmacenamiento = 2, Stock = 25, RutaImagen = "../Images/Products/iphone12.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500},
                     new ProductoColorAlamacenamientoInter() {idproducto = 5, idcolor = 2, idalmacenamiento = 2, Stock = 25, RutaImagen = "../Images/Products/13.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500},
                     new ProductoColorAlamacenamientoInter() {idproducto = 6, idcolor = 3, idalmacenamiento = 5, Stock = 25, RutaImagen = "../Images/Products/14.jpg", Caracteristicas = "PANTALLA\r\n\r\nOLED Retina\r\n2.532 x 1.170 píxeles, Super Retina XDR, 19.5:9\r\n460ppp\r\nTrue-tone\r\n\r\nPROCESADOR\r\n\r\nApple A14 Bionic, 5nm\r\nNPU Neural Engine de 4ª gen\r\n\r\nVERSIONES\r\n\r\n64 / 128 / 256 GB\r\n\r\nDIMENSIONES Y PESO\r\n\r\n146,7 mm x 71,5 mm x 7,4mm\r\n162g\r\n\r\nSOFTWARE\r\n\r\niOS 14\r\n\r\nCÁMARAS TRASERAS\r\n\r\nPrincipal: 12MP, f/1.6, OIS, QuadLED flash\r\nSecundaria gran angular: 12MP, f/2.4\r\nVídeo: 4K Dolby Vision, 1080p/240fps, HDR\r\n\r\nCÁMARA FRONTAL\r\n\r\n12MP, f/2.2, TOF 3D, slow-motion\r\n\r\nBATERÍA\r\n\r\nCarga rápida 18W e inalámbrica MagSafe 15W\r\n\r\nOTROS\r\n\r\nWiFi 6, 5G, BT 5.0, NFC, GPS, dualSIM, eSIM, altavoces estéreo Dolby Atmos, reconocimiento facial, resistencia al agua IP68.", PrecioCompra = 600, PrecioVenta = 7500},
-                    new ProductoColorAlamacenamientoInter() {idproducto = 8, idcolor = 2, idalmacenamiento = 1, Stock = 15, RutaImagen = "../Images/Products/Magsafe.png", Caracteristicas = "La funda cuenta con imanes que se alinean a la perfección con el, para que puedas conectarlo y cargarlo de forma inalámbrica con gran facilidad. No es necesario quitarla para cargar el teléfono con un cargador con certificación Qi o MagSafe", PrecioCompra = 200, PrecioVenta = 6000}
+                    new ProductoColorAlamacenamientoInter() {idproducto = 8, idcolor = 2, idalmacenamiento = 1, Stock = 80, RutaImagen = "../Images/Products/Magsafe.png", Caracteristicas = "La funda cuenta con imanes que se alinean a la perfección con el, para que puedas conectarlo y cargarlo de forma inalámbrica con gran facilidad. No es necesario quitarla para cargar el teléfono con un cargador con certificación Qi o MagSafe", PrecioCompra = 200, PrecioVenta = 6000}
                 };
 
             var insertarventas = new CarritoVenta[]
                 {
-                    new CarritoVenta() { Nombre = "Prueba", Cantidad = 10, Total = 1500, IVA = Convert.ToDecimal(1500*1.16), Fecha = DateTime.Now, idusuario = 1, Envio = "En Proceso", idproductointer = 2, Cambio = 2, IDOrden = 1, RutaImagen =  "../Images/Products/Airpods2.jpeg"}
+                    new CarritoVenta() { Nombre = "Prueba", Cantidad = 10, Total = 1500, IVA = Convert.ToDecimal(1500*1.16), Fecha = DateTime.Now, idusuario = 1, Envio = "En Proceso", idproductointer = 2, Cambio = 2, IDOrden = 1, RutaImagen =  "../Images/Products/Airpods2.jpeg", IDPedido = $"{Guid.NewGuid()}"}
                 };
 
             foreach (var u in insertardireccion)

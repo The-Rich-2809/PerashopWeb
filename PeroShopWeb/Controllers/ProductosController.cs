@@ -35,6 +35,12 @@ namespace PeroShopWeb.Controllers
                     }
                 }
             }
+
+            int conteo = _ContextoDB.CarritoVenta
+            .Where(c => c.Cambio == 1 && c.idusuario == IdUser)
+            .Count();
+
+            ViewBag.conteo = conteo;
         }
 
         [HttpGet]
@@ -72,6 +78,7 @@ namespace PeroShopWeb.Controllers
             carritoVenta.idusuario = IdUser;
             carritoVenta.Cambio = 1;
             carritoVenta.Envio = "";
+            carritoVenta.IDPedido = "";
 
             int t = 0;
 
@@ -83,9 +90,12 @@ namespace PeroShopWeb.Controllers
                 {
                     if (item.idproductointer == carritoVenta.idproductointer)
                     {
-                        carritoVenta.Cantidad += item.Cantidad;
-                        _ContextoDB.CarritoVenta.Remove(item);
-                        _ContextoDB.SaveChanges();
+                        if (item.Cambio == 1)
+                        {
+                            carritoVenta.Cantidad += item.Cantidad;
+                            _ContextoDB.CarritoVenta.Remove(item);
+                            _ContextoDB.SaveChanges();
+                        }
                     }
                     t++;
                 }
@@ -142,12 +152,12 @@ namespace PeroShopWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult EliminarCarrito(int id)
+        public IActionResult EliminarCarrito(int idinter)
         {
-            var prodcarrito = _ContextoDB.CarritoVenta.FirstOrDefault(p => p.ID == id);
+            var prodcarrito = _ContextoDB.CarritoVenta.FirstOrDefault(p => p.ID == idinter);
             _ContextoDB.CarritoVenta.Remove(prodcarrito);
             _ContextoDB.SaveChanges();
-            return RedirectToAction("Carrito");
+            return RedirectToAction(nameof(Carrito));
         }
     }
 }

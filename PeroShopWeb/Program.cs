@@ -10,6 +10,7 @@ builder.Services.AddDbContext<PerashopDB>(options => options.UseSqlServer(builde
 builder.Services.AddSingleton<PathProvider>();
 builder.Services.AddSingleton<HelperUploadFiles>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

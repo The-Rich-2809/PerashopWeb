@@ -25,12 +25,12 @@
       "PackagePath": "staticwebassets\\Images\\Products\\Airpods2.jpeg"
     },
     {
-      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Airpods3.jpg",
-      "PackagePath": "staticwebassets\\Images\\Products\\Airpods3.jpg"
-    },
-    {
       "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\AirpodsM.jpg",
       "PackagePath": "staticwebassets\\Images\\Products\\AirpodsM.jpg"
+    },
+    {
+      "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\AirpodsPro.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\AirpodsPro.jpg"
     },
     {
       "Id": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Fundas.png",

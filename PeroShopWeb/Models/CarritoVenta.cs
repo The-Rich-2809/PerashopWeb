@@ -19,5 +19,6 @@ namespace PeroShopWeb.Models
         public string RutaImagen { get; set; }
         public int Cambio { get; set; }
         public int IDOrden { get; set; }
+        public string IDPedido { get; set; }
     }
 }

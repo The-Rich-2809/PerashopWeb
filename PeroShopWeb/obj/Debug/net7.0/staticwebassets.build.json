@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b3cHcGQfKdRnw4Lj8L2jt04jWxMfPbbZN3VWl4e3i5s=",
+  "Hash": "lXv3QftRNML/jY+ZezX7kt9o092ljEV/fgn9wtrg3Gc=",
   "Source": "PeroShopWeb",
   "BasePath": "_content/PeroShopWeb",
   "Mode": "Default",
@@ -207,25 +207,6 @@
       "OriginalItemSpec": "wwwroot\\Images\\Products\\Airpods2.jpeg"
     },
     {
-      "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Airpods3.jpg",
-      "SourceId": "PeroShopWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\",
-      "BasePath": "_content/PeroShopWeb",
-      "RelativePath": "Images/Products/Airpods3.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Products\\Airpods3.jpg"
-    },
-    {
       "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\AirpodsM.jpg",
       "SourceId": "PeroShopWeb",
       "SourceType": "Discovered",
@@ -243,6 +224,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\AirpodsM.jpg"
+    },
+    {
+      "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\AirpodsPro.jpg",
+      "SourceId": "PeroShopWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\",
+      "BasePath": "_content/PeroShopWeb",
+      "RelativePath": "Images/Products/AirpodsPro.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\AirpodsPro.jpg"
     },
     {
       "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\carusel 1.png",

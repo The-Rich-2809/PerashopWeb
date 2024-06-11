@@ -3,13 +3,6 @@
     Layout = "_LayoutAdmin2";
 }
 
-<script>
-    function hola() {
-        var prueba = 'hola';
-        @ViewBag.prueba = prueba;
-    }
-</script>
-
 <body>
     <div class="row g-3">
         <div class="col-sm-6">
@@ -24,7 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">Stock</th>
-                    <th scope="col">Color </th>
+                    <th scope="col">Color</th>
                     @if (ViewBag.Categoria == "Telefonos")
                     {
                         <th scope="col">Almacenamiento</th>
@@ -36,13 +29,13 @@
             <tbody class="table-group-divider">
                 @foreach (var u in Model.ProductosInter)
                 {
-                    if(u.idproducto == ViewBag.Id)
+                    if (u.idproducto == ViewBag.Id)
                     {
                         <tr>
                             <td>@u.Stock</td>
-                            @foreach(var c in Model.ProductoColors)
+                            @foreach (var c in Model.ProductoColors)
                             {
-                                if(c.ID == u.idcolor)
+                                if (c.ID == u.idcolor)
                                 {
                                     <td>@c.Color</td>
                                 }
@@ -58,8 +51,8 @@
                                 }
                             }
                             <td>
-                                <a class="btn btn-primary text-white" asp-action="EditarCaracteristicas" asp-route-id="@u.ID" onclick="hola()">Editar</a>
-                                <a class="btn btn-danger text-white" asp-action="EliminarUsuarios" asp-route-id="@u.ID">Borrar</a>
+                                <a id="deleteForm" class="btn btn-danger text-white" asp-action="EliminarCaracteristicas" asp-controller="Admin" asp-route-id="@u.ID" onclick="confirmarEliminacion(@u.ID)">>Borrar</a>
+                                <a class="btn btn-primary text-white" asp-action="EditarCaracteristicas" asp-controller="Admin" asp-route-id="@u.ID">Editar</a>
                             </td>
                         </tr>
                     }
@@ -67,4 +60,8 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Formulario oculto para eliminar -->
+    
 </body>
+</html>

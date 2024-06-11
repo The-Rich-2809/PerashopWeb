@@ -51,5 +51,19 @@
                 return false;
             }
         }
+
+        public bool EditarCaracteristicas(ProductoColorAlamacenamientoInter productointer)
+        {
+            try
+            {
+                _contextDB.ProductoInter.Update(productointer);
+                _contextDB.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -64,11 +64,12 @@
                                                 </td>
                                                 <td class="align-middle total-cell" data-total="@(u.Cantidad * i.PrecioVenta)">@(u.Cantidad * i.PrecioVenta)</td>
                                                 <td class="align-middle">
+                                                    <form id="form-to-hide" asp-controller="Productos" asp-action="EliminarCarrito" method="get">
+                                                        <input type="hidden" name="idinter" value="@u.ID" />
+                                                    </form>
                                                     <form asp-controller="Productos" asp-action="EliminarCarrito" method="get">
-                                                        <input type="hidden" name="id" value="@u.ID" />
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
+                                                        <input type="hidden" name="idinter" value="@u.ID" />
+                                                        <button type="submit" class="text-muted"><i class="fas fa-times"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -162,3 +163,9 @@
     });
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#form-to-hide').hide();
+    });
+</script>

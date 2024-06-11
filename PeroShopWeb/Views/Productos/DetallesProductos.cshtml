@@ -16,13 +16,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             let maxQuantity = 1;
             let productInterId = null;
             let imageUrl = '';
+
+            // Recuperar la categoría desde ViewBag
+            let categoria = '@ViewBag.Categoria';
 
             $('#combobox1').on("change", function () {
                 var valor = $(this).val();
@@ -54,6 +56,12 @@
                             // Update hidden input with image URL
                             $('input[name="RutaImagen"]').val(imageUrl);
                         }
+
+                        // Automatically select the first valid option in combobox2 if the category is not 'Telefonos'
+                        if (categoria !== "Telefonos" && data.length > 0) {
+                            var firstOption = combobox2.find('option:eq(1)');
+                            combobox2.val(firstOption.val()).trigger('change');
+                        }
                     },
                     error: function (error) {
                         console.log(error);
@@ -66,9 +74,8 @@
                 maxQuantity = selectedOption.data('max-quantity') || 1;
                 productInterId = selectedOption.data('product-inter-id') || null;
                 var quantityInput = $('input[name="Cantidad"]');
-                quantityInput.val(1);  // Reset quantity to 1 on storage change
+                quantityInput.val(1);
 
-                // Update the stock display
                 $('#stock').text('Stock: ' + maxQuantity);
             });
 
@@ -88,7 +95,10 @@
                 }
             });
 
-            // Optionally, use productInterId in your form submission or elsewhere
+            // Initialize stock display for categories without storage
+            if (!$('#combobox2').length) {
+                $('#stock').text('Stock: ' + maxQuantity);
+            }
         });
     </script>
 </head>
@@ -140,13 +150,23 @@
                                         </div>
                                     </form>
                                 </div>
+
                                 <div class="d-flex mb-4">
-                                    <strong class="text-dark mr-3">Almacenamientos:</strong>
+                                    @if (ViewBag.Categoria == "Telefonos")
+                                    {
+                                        <strong class="text-dark mr-3">Almacenamientos:</strong>
+                                    }
                                     <form>
                                         <div class="custom-control custom-radio input-group mb-3">
                                             @if (ViewBag.Categoria == "Telefonos")
                                             {
                                                 <select name="Almacenamiento" class="form-select" id="combobox2" required style="width: 100%; max-width: 400px;">
+                                                    <option value="">Almacenamiento...</option>
+                                                </select>
+                                            }
+                                            else
+                                            {
+                                                <select name="Almacenamiento" class="form-select" id="combobox2" style="display:none;">
                                                     <option value="">Almacenamiento...</option>
                                                 </select>
                                             }
@@ -172,6 +192,13 @@
                                             <i class="fa fa-shopping-cart mr-1 custom-control-inline"></i> Add To Cart
                                         </button>
                                         <input type="hidden" name="RutaImagen" value="@u.RutaImagen" />
+                                        @foreach (var f in Model.ProductosInter)
+                                        {
+                                            if (f.idproducto == ViewBag.ID)
+                                            {
+                                                <input type="hidden" name="Total" value="@f.PrecioVenta" />
+                                            }
+                                        }
                                         <input type="hidden" name="idproductointer" value="@u.ID" />
                                         <input type="hidden" name="Nombre" value="@ViewBag.NombreProducto" />
                                     </form>
