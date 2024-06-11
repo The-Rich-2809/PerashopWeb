@@ -1,0 +1,37 @@
+﻿@{
+    if (ViewBag.Nivel == "Admin")
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else if (ViewBag.Nivel == "Cliente")
+    {
+        Layout = "_LayoutCliente";
+    }
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Compra</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h1 class="card-title text-success">¡Gracias por tu compra!</h1>
+                        <p class="card-text">Tu pedido ha sido procesado exitosamente.</p>
+                        <div class="order-details mt-4">
+                            <p class="font-weight-bold">Detalles del Pedido:</p>
+                            <p>Total: <span class="font-weight-bold">$ @ViewBag.Total</span></p>
+                        </div>
+                        <p>Se enviará una confirmación a tu correo electrónico.</p>
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-success mt-3">Volver a la página principal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

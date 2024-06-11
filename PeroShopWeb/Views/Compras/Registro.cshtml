@@ -8,6 +8,11 @@
     {
         Layout = "_LayoutCliente";
     }
+
+    int totalItems = Model.CarritoVentas.Count(c => c.idusuario == ViewBag.IdUser);
+    decimal totalPrice = Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio == 1).Sum(c => c.Total);
+    decimal shippingCost = 10.00m;
+    decimal totalToPay = totalPrice + shippingCost;
 }
 <!DOCTYPE html>
 <html lang="es">
@@ -26,7 +31,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: 100
+                            value: @totalToPay
                         }
                     }]
                 });
@@ -35,7 +40,7 @@
             onApprove: function (data, actions) {
                 actions.order.capture().then(function (detalles) {
                     console.log(detalles);
-                    window.location.href = "CompraRealizada";
+                    window.location.href = "Compra?total=" + @totalToPay;
                 });
             },
 
@@ -65,86 +70,110 @@
                 font-size: 18px;
                 margin: 0 auto;
             }
+
+        .autenticado {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="row">
-                        @{
-                            foreach (var i in ViewBag.listaususuarios)
-                            {
-                                if (i.ID == ViewBag.IdUser)
-                                {
-                                        <dl class="row">
-                                            <dt class="col-sm-2">
-                                                Nombre
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @i.Nombre
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                Email
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @i.Correo
-                                            </dd>
-                                            <dt class="col-sm-2">
-                                                Telefono
-                                            </dt>
-                                            <dd class="col-sm-10">
-                                                @i.NumeroTelefono
-                                            </dd>
-                                        </dl>
-                                }
-                            }
-                        }
-                    </div>
+    @{
+        if (ViewBag.cookie == null)
+        {
+            <div class="card-body">
+                <div class="autenticado">
+                    <p>Por favor, <a asp-controller="Home" asp-action="Login">inicia sesión</a> o <a asp-controller="Home" asp-action="Register">regístrate</a> para poder continuar</p>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Total de la orden</span></h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="border-bottom">
-                        <h6 class="mb-3">Products</h6>
-                        @foreach (var u in Model.CarritoVentas)
-                        {
-                            if (ViewBag.IdUser == u.idusuario)
-                            {
-                                @foreach (var i in Model.ProductosInter)
-                                {
-                                    if (i.ID == u.idproductointer)
+        }
+        else
+        {
+            <div class="container-fluid">
+                <div class="row px-xl-5">
+                    <div class="col-lg-8">
+                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
+                        <div class="bg-light p-30 mb-5">
+                            <div class="row">
+                                @{
+                                    foreach (var i in ViewBag.listaususuarios)
                                     {
-                                        if (u.Cambio == 1)
+                                        if (i.ID == ViewBag.IdUser)
                                         {
-                                            <div class="d-flex justify-content-between">
-                                                <p>@u.Nombre</p>
-                                                <p data-total="@(u.Cantidad * i.PrecioVenta)">$@(u.Cantidad * i.PrecioVenta)</p>
-                                            </div>
+                                            <dl class="row">
+                                                <dt class="col-sm-2">
+                                                    Nombre
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @i.Nombre
+                                                </dd>
+                                                <dt class="col-sm-2">
+                                                    Email
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @i.Correo
+                                                </dd>
+                                                <dt class="col-sm-2">
+                                                    Telefono
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @i.NumeroTelefono
+                                                </dd>
+                                            </dl>
                                         }
                                     }
                                 }
-                            }
-                        }
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-5">
-                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Metodos de Pago</span></h5>
-                        <div class="bg-light p-30">
-                            <div class="form-group payment-method">
-                                <div class="custom-control custom-radio" style="padding-right: 30px">
-                                    <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                    <label id="paypal-button-container"></label>
+                    <div class="col-lg-4">
+                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Total de la orden</span></h5>
+                        <div class="bg-light p-30 mb-5">
+                            <div class="border-bottom">
+                                <h6 class="mb-3">Products</h6>
+                                @foreach (var u in Model.CarritoVentas)
+                                {
+                                    if (ViewBag.IdUser == u.idusuario)
+                                    {
+                                        @foreach (var i in Model.ProductosInter)
+                                        {
+                                            if (i.ID == u.idproductointer)
+                                            {
+                                                if (u.Cambio == 1)
+                                                {
+                                                    <div class="d-flex justify-content-between">
+                                                        <p>@u.Nombre</p>
+                                                        <p data-total="@(u.Cantidad * i.PrecioVenta)">$@(u.Cantidad * i.PrecioVenta)</p>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            </div>
+                            <div class="mb-5">
+                                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Metodos de Pago</span></h5>
+                                <div class="bg-light p-30">
+                                    <div class="form-group payment-method">
+                                        <div class="custom-control custom-radio" style="padding-right: 30px">
+                                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                            <label id="paypal-button-container"></label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 </body>
 </html>

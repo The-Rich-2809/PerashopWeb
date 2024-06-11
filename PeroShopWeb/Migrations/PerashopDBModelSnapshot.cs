@@ -46,6 +46,10 @@ namespace PeroShopWeb.Migrations
                     b.Property<int>("IDOrden")
                         .HasColumnType("int");
 
+                    b.Property<string>("IDPedido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("IVA")
                         .HasColumnType("decimal(18,2)");
 

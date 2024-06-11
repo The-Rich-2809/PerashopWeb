@@ -7,6 +7,7 @@ using PeroShopWeb.Providers;
 using PeroShopWeb.Helpers;
 using System.Text.Json;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace PeroShopWeb.Controllers
 {
@@ -22,11 +23,15 @@ namespace PeroShopWeb.Controllers
             this.helperUpload = helperUpload;
         }
         public static int IdProducto { get; set; }
+
+        public static int idinter { get; set; }
         public static string CategoriaProducto { get; set; }
 
         public void Cookies()
         {
             var miCookie = HttpContext.Request.Cookies["MiCookie"];
+
+            int IdUser = 0;
 
             if (miCookie != null)
             {
@@ -35,12 +40,19 @@ namespace PeroShopWeb.Controllers
                 {
                     if (miCookie == user.Correo)
                     {
+                        IdUser = user.ID;
                         ViewBag.Nombre = user.Nombre;
                         ViewBag.Nivel = user.TipoUsuario;
                         ViewBag.FotoPerfil = user.DireccionImagen;
                     }
                 }
             }
+
+            int conteo = _contextDB.CarritoVenta
+            .Where(c => c.Cambio == 1 && c.idusuario == IdUser)
+            .Count();
+
+            ViewBag.conteo = conteo;
         }
 
         public IActionResult Bienvenida()
@@ -64,12 +76,37 @@ namespace PeroShopWeb.Controllers
             return View(usuario);
         }
 
+        [HttpPost]
+        public IActionResult EditarUsuarios(Usuario usuario)
+        {
+            Cookies();
+
+            usuario.DireccionImagen = "../Images/Usuarios/Usuario.jpg";
+
+            _contextDB.Usuario.Update(usuario);
+            _contextDB.SaveChanges();
+
+            return RedirectToAction("Usuarios");
+        }
+
         [HttpGet]
         public IActionResult EliminarUsuarios(int id)
         {
             var usuario = _contextDB.Usuario.FirstOrDefault(p => p.ID == id);
             Cookies();
             return View(usuario);
+        }
+
+        [HttpPost]
+        public IActionResult EliminarUsuarios(Usuario usuario)
+        {
+            var usua = _contextDB.Usuario.FirstOrDefault(p => p.ID == usuario.ID);
+            Cookies();
+
+            _contextDB.Usuario.Remove(usua);
+            _contextDB.SaveChanges();
+
+            return RedirectToAction("Usuarios");
         }
 
         [HttpGet]
@@ -200,18 +237,26 @@ namespace PeroShopWeb.Controllers
             }
             else
             {
-                productointer.idproducto = IdProducto;
-                if (CategoriaProducto != "Telefonos")
+                if (Imagen == null)
                 {
-                    productointer.idalmacenamiento = 1;
+                    ViewBag.Mensaje = "Seleccione una imagen para el producto";
+                    return View();
                 }
+                else
+                {
+                    productointer.idproducto = IdProducto;
+                    if (CategoriaProducto != "Telefonos")
+                    {
+                        productointer.idalmacenamiento = 1;
+                    }
 
-                string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
-                await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
+                    string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
+                    await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
 
-                productointer.RutaImagen = "../Images/Products/" + nombreImagen;
-                productoModel.NuevasCaracteristicas(productointer);
-                return RedirectToAction("Productos");
+                    productointer.RutaImagen = "../Images/Products/" + nombreImagen;
+                    productoModel.NuevasCaracteristicas(productointer);
+                    return RedirectToAction("Productos");
+                }
             }
         }
 
@@ -243,38 +288,50 @@ namespace PeroShopWeb.Controllers
                 productointer.idalmacenamiento = 1;
             }
 
-            string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
-            await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
+            if (Imagen != null)
+            {
+                string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
+                await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
 
-            productointer.RutaImagen = "../Images/Products/" + nombreImagen;
-            productoModel.NuevasCaracteristicas(productointer);
+                productointer.RutaImagen = "../Images/Products/" + nombreImagen;
+            }
+
+            productoModel.EditarCaracteristicas(productointer);
             return RedirectToAction("Productos");
         }
 
+        [HttpGet]
+        public IActionResult EliminarCaracteristicas(int id)
+        {
+            idinter = id;
+            List<ProductoColorAlamacenamientoInter> listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == IdProducto).ToList();
+            List<ProductoColor> listproductoColor = _contextDB.Colores.ToList();
+            List<ProductoAlmacenamiento> listproductoAlmacenamiento = _contextDB.Almacenamientos.ToList();
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> EditarUsuarios(IFormFile Imagen, Usuario usuario, string id, string Contrasena1, string Contrasena2)
-        //{
-        //    var usuarios = new UsuarioModel(_contextDB);
-        //    if (Imagen != null)
-        //    {
-        //        string nombreImagen = usuario.Correo + Imagen.FileName;
-        //        await this.helperUpload.UploadFilesAsync(Imagen, nombreImagen, Fold.Images);
-        //        usuario.DireccionImagen = "../Images/Usuarios/" + nombreImagen;
-        //    }
-        //    else
-        //    {
-        //        usuario.DireccionImagePerfil = FotoPerfil;
-        //    }
-        //    if (Contrasena1 != null)
-        //    {
-        //        usuario.Contrasena = Contrasena1;
-        //    }
+            var viewmodel = new ProductosViewModel
+            {
+                ProductosInter = listproductoInter,
+                ProductoColors = listproductoColor,
+                productoAlmacenamientos = listproductoAlmacenamiento
+            };
 
-        //    usuarios.EditarUsuario(usuario);
-        //    Cookies();
-        //    return RedirectToAction(nameof(Usuarios));
-        //}
+            Cookies();
+            ViewBag.Categoria = CategoriaProducto;
+            return View(viewmodel);
+        }
+
+        [HttpPost]
+        public IActionResult EliminarCaracteristicas()
+        {
+            var listproductoInter = _contextDB.ProductoInter.FirstOrDefault(i => i.ID == idinter);
+
+            
+            Cookies();
+
+            _contextDB.ProductoInter.Remove(listproductoInter);
+            _contextDB.SaveChanges();
+            
+            return RedirectToAction("Productos");
+        }
     }
 }

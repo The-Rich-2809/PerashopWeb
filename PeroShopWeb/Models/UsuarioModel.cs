@@ -16,6 +16,7 @@
         public static string Nombre { get; set; }
         public static string TipoUsuario { get; set; }
         public static string DireccionImagen { get; set; }
+        public string Telefono { get; set; }
 
         public bool Login()
         {
@@ -60,7 +61,7 @@
                 {
                     var u = new Usuario[]
                         {
-                            new Usuario() {Correo = Correo, Contrasena = Contrasena, TipoUsuario = "Cliente", Nombre = Nombre, DireccionImagen = "../Images/Usuarios/Usuario.png"}
+                            new Usuario() {Correo = Correo, Contrasena = Contrasena, TipoUsuario = "Cliente", Nombre = Nombre, DireccionImagen = "../Images/Usuarios/Usuario.png", NumeroTelefono = Telefono}
                         };
 
                     foreach (var us in u)

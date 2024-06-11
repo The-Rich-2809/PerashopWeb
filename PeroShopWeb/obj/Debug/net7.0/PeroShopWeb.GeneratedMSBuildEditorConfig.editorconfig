@@ -42,6 +42,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyVXN1YXJpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EliminarCaracteristicas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWxpbWluYXJDYXJhY3RlcmlzdGljYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EliminarUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWxpbWluYXJVc3Vhcmlvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/NuevoProducto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTnVldm9Qcm9kdWN0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,6 +68,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/VentasTerminada.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVudGFzVGVybWluYWRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Compras/Compra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHJhc1xDb21wcmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Compras/Registro.cshtml]
