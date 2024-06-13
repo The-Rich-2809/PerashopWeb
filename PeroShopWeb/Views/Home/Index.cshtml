@@ -59,7 +59,7 @@
                                     <div class="p-3" style="max-width: 700px;">
                                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">PeraPhone</h1>
                                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Descubre la innovación y calidad en cada dispositivo. Encuentra el celular perfecto para ti.</p>
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="Peraphones.html">Shop Now</a>
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Telefonos">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                     <div class="p-3" style="max-width: 700px;">
                                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Audifonos</h1>
                                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Sonido excepcional en tus oídos. Compra ahora.</p>
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="Airpods.html">Shop Now</a>
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Audifonos">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <div class="p-3" style="max-width: 700px;">
                                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Fundas</h1>
                                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Protege tu dispositivo con estilo. Compra fundas hoy.</p>
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Fundas">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">CATEGORIAS</span></h2>
         <div class="categories-container">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" href="Peraphones.html">
+                <a class="text-decoration-none" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Telefonos">
                     <div class="cat-item d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
                             <img class="img-fluid" src="~/Images/Products/13.jpg" alt="">
@@ -120,7 +120,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" href="Airpods.html">
+                <a class="text-decoration-none" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Audifonos">
                     <div class="cat-item img-zoom d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
                             <img class="img-fluid" src="~/Images/Products/Airpods1.jpeg" alt="">
@@ -133,7 +133,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" href="detailfunda.html">
+                <a class="text-decoration-none" asp-controller="Productos" asp-action="ListaProductos" asp-route-valor="Fundas">
                     <div class="cat-item img-zoom d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
                             <img class="img-fluid" src="~/Images/Products/Fundas.png" alt="">

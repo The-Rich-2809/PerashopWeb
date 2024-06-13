@@ -81,9 +81,12 @@ namespace PeroShopWeb.Controllers
         {
             Cookies();
 
-            usuario.DireccionImagen = "../Images/Usuarios/Usuario.jpg";
+           var u = _contextDB.Usuario.FirstOrDefault(u => u.ID == usuario.ID);
 
-            _contextDB.Usuario.Update(usuario);
+            u.TipoUsuario = usuario.TipoUsuario;
+            u.DireccionImagen = "../Images/Usuarios/Usuario.jpg";
+
+            _contextDB.Usuario.Update(u);
             _contextDB.SaveChanges();
 
             return RedirectToAction("Usuarios");
@@ -288,15 +291,21 @@ namespace PeroShopWeb.Controllers
                 productointer.idalmacenamiento = 1;
             }
 
-            if (Imagen != null)
+            if (Imagen == null)
             {
                 string nombreImagen = +productointer.idproducto + "_" + productointer.idcolor + "_" + productointer.idalmacenamiento + "_" + Imagen[0].FileName;
                 await this.helperUpload.UploadFilesAsync(Imagen[0], nombreImagen, Folders.Productos);
 
                 productointer.RutaImagen = "../Images/Products/" + nombreImagen;
             }
+            else
+                productointer.RutaImagen = _contextDB.ProductoInter.FirstOrDefault(p => p.ID == productointer.ID).RutaImagen;
 
-            productoModel.EditarCaracteristicas(productointer);
+            var u = productointer;
+
+
+            _contextDB.ProductoInter.Update(u);
+            _contextDB.SaveChanges();
             return RedirectToAction("Productos");
         }
 

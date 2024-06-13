@@ -58,8 +58,7 @@
               "RelativeToolTip": "PeroShopWeb\\Views\\Admin\\EliminarUsuarios.cshtml",
               "ViewState": "AQIAABgAAAAAAAAAAAAAAFQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T07:23:14.548Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:23:14.548Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "PeroShopWeb\\Controllers\\HomeController.cs",
               "ViewState": "AQIAAJ4AAAAAAAAAAAAUwK4AAACYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T07:14:59.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:14:59.67Z"
             },
             {
               "$type": "Document",
@@ -84,8 +82,7 @@
               "RelativeToolTip": "PeroShopWeb\\Views\\Admin\\EditarUsuarios.cshtml",
               "ViewState": "AQIAAD0AAAAAAAAAAAAiwFQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T07:12:22.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:12:22.028Z"
             },
             {
               "$type": "Document",
@@ -97,8 +94,7 @@
               "RelativeToolTip": "PeroShopWeb\\Controllers\\AdminController.cs",
               "ViewState": "AQIAADkBAAAAAAAAAAAswEQBAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T06:43:48.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T06:43:48.508Z"
             },
             {
               "$type": "Document",
@@ -110,8 +106,7 @@
               "RelativeToolTip": "PeroShopWeb\\Views\\Admin\\EditarProducto.cshtml",
               "ViewState": "AQIAADgAAAAAAAAAAAAAAEAAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T07:43:52.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:43:52.686Z"
             },
             {
               "$type": "Document",
@@ -123,8 +118,7 @@
               "RelativeToolTip": "PeroShopWeb\\Views\\Admin\\AgregaCaracteristicas.cshtml",
               "ViewState": "AQIAAGkAAAAAAAAAAAAAAHUAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T07:31:48.136Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:31:48.136Z"
             },
             {
               "$type": "Document",
@@ -136,8 +130,7 @@
               "RelativeToolTip": "PeroShopWeb\\Views\\Admin\\EditarCaracteristicas.cshtml",
               "ViewState": "AQIAAGgAAAAAAAAAAAAiwHIAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T07:33:20.548Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:33:20.548Z"
             },
             {
               "$type": "Document",
@@ -149,8 +142,7 @@
               "RelativeToolTip": "PeroShopWeb\\Views\\Admin\\EliminarCaracteristicas.cshtml",
               "ViewState": "AQIAAEUAAAAAAAAAAAAAAFAAAABfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-11T07:33:52.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:33:52.064Z"
             },
             {
               "$type": "Document",
@@ -162,8 +154,7 @@
               "RelativeToolTip": "PeroShopWeb\\Models\\ProductoModel.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAiwDoAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T07:28:48.116Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T07:28:48.116Z"
             }
           ]
         }
