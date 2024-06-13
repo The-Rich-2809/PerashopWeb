@@ -1,0 +1,80 @@
+[
+  {
+    "ContainingType": "PeroShopWeb.Controllers.CombosController",
+    "Method": "DetalleCombos",
+    "RelativePath": "api/Combos/DetalleCombos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "valor",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idprod",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PeroShopWeb.Controllers.DetalleCombosResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PeroShopWeb.Controllers.CombosController",
+    "Method": "GetMaxQuantity",
+    "RelativePath": "api/Combos/GetMaxQuantity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productInterId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PeroShopWeb.Controllers.CombosController",
+    "Method": "ValorCombos",
+    "RelativePath": "api/Combos/ValorCombos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "valor",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idprod",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[PeroShopWeb.Controllers.ComboBoxItem, PeroShopWeb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

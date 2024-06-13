@@ -112,7 +112,10 @@
         var openModalBtn = document.querySelector('[data-toggle="modal"]');
 
         // Obtener el botón de Sí
-        var yesBtn = document.getElementById("yesBtn");
+        document.getElementById('yesBtn').addEventListener('click', function () {
+            // Envía el formulario cuando el usuario hace clic en "Sí"
+            document.querySelector('form').submit();
+        });
 
         var submitButton = document.getElementById("submitButton");
 
