@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexa\\OneDrive\\Documentos\\UniversidadLatina\\PerashopWeb-main\\PeroShopWeb\\PeroShopWeb.csproj": {}
+    "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexa\\OneDrive\\Documentos\\UniversidadLatina\\PerashopWeb-main\\PeroShopWeb\\PeroShopWeb.csproj": {
+    "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexa\\OneDrive\\Documentos\\UniversidadLatina\\PerashopWeb-main\\PeroShopWeb\\PeroShopWeb.csproj",
+        "projectUniqueName": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
         "projectName": "PeroShopWeb",
-        "projectPath": "C:\\Users\\alexa\\OneDrive\\Documentos\\UniversidadLatina\\PerashopWeb-main\\PeroShopWeb\\PeroShopWeb.csproj",
+        "projectPath": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
         "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexa\\OneDrive\\Documentos\\UniversidadLatina\\PerashopWeb-main\\PeroShopWeb\\obj\\",
+        "outputPath": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",

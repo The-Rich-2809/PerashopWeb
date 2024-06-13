@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "57x8N3oEc9Yy/ZwZJS9Otz5MUUjuAqqDHOKmBj6ldkAlR/sqOPc77/LWAYOblF6AI9k55I1m37QZPItJZXt/JQ==",
+  "dgSpecHash": "uxSElerqvg1o2hbHRCIVO99K/FbJdEAUijO7LtZklLB9KZAlKJsO8HDlHnEGKvJ40fTyWyo1IbJ6cAvG0dhoBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alexa\\OneDrive\\Documentos\\UniversidadLatina\\PerashopWeb-main\\PeroShopWeb\\PeroShopWeb.csproj",
+  "projectFilePath": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\PeroShopWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alexa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

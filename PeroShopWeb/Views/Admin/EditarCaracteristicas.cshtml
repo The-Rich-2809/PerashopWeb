@@ -8,7 +8,7 @@
     <main class="container">
         <div class="my-3 p-3 bg-light rounded shadow-sm">
             <h1>Agregar características</h1>
-            <form class="needs-validation" novalidate method="post" enctype="multipart/form-data">
+            <form id="productForm" class="needs-validation" novalidate method="post" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-md-5">
                         <label class="form-label">Color del Producto</label>
@@ -78,27 +78,28 @@
                     </div>
                 </div>
                 <hr class="my-4">
-                <button type="button" class="w-100 btn btn-primary btn-lg" id="showConfirmModal">Agregar características del Producto</button>
+                <button id="submitButton" type="button" class="w-100 btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" asp-action="EditarCaracteristicas" asp-controller="Admin">Agregar características del Producto</button>
             </form>
             <br />
             <h1>@ViewBag.Mensaje</h1>
         </div>
     </main>
 
-    <!-- Modal de confirmación -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirmar Modificacion Características</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    ¿Está seguro de que desea modificar estas características al producto?
+                    <p>Do you want to proceed?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary" id="confirmButton">Sí</button>
+                    <button id="yesBtn" class="btn btn-success">Yes</button>
+                    <button id="noBtn" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
@@ -107,15 +108,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="~/js/form-validation.js"></script>
     <script>
-        document.getElementById('showConfirmModal').addEventListener('click', function () {
-            var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {});
-            confirmModal.show();
-        });
+        // Obtener el botón que abre el modal
+        var openModalBtn = document.querySelector('[data-toggle="modal"]');
 
-        document.getElementById('confirmButton').addEventListener('click', function () {
-            // Envía el formulario cuando el usuario hace clic en "Sí"
-            document.querySelector('form').submit();
-        });
+        // Obtener el botón de Sí
+        var yesBtn = document.getElementById("yesBtn");
+
+        var submitButton = document.getElementById("submitButton");
+
+        // Cuando el usuario hace clic en el botón, abre el modal
+        btn.onclick = function () {
+            $('#myModal').modal('show');
+        }
+
+        yesBtn.onclick = function () {
+            // Cambiar el tipo del botón de agregar características a submit
+            submitButton.type = 'submit';
+            // Hacer clic en el botón de agregar características para enviar el formulario
+            submitButton.click();
+        }
     </script>
 </body>
 </html>

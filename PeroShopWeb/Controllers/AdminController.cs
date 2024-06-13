@@ -264,9 +264,9 @@ namespace PeroShopWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditarCaracteristicas()
+        public IActionResult EditarCaracteristicas(int id)
         {
-            List<ProductoColorAlamacenamientoInter> listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == IdProducto).ToList();
+            var listproductoInter = _contextDB.ProductoInter.Where(p => p.ID == id);
             List<ProductoColor> listproductoColor = _contextDB.Colores.ToList();
             List<ProductoAlmacenamiento> listproductoAlmacenamiento = _contextDB.Almacenamientos.ToList();
 
@@ -279,6 +279,8 @@ namespace PeroShopWeb.Controllers
 
             Cookies();
             ViewBag.Categoria = CategoriaProducto;
+            ViewBag.idinter = id;
+
             return View(viewmodel);
         }
         [HttpPost]

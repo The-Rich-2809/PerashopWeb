@@ -9,131 +9,131 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PeroShopWeb
 build_property.RootNamespace = PeroShopWeb
-build_property.ProjectDir = C:\Users\alexa\OneDrive\Documentos\UniversidadLatina\PerashopWeb-main\PeroShopWeb\
+build_property.ProjectDir = C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\alexa\OneDrive\Documentos\UniversidadLatina\PerashopWeb-main\PeroShopWeb
+build_property.MSBuildProjectDirectory = C:\Github\Kapicentro\PerashopWeb\PeroShopWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/AgregaCaracteristicas.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/AgregaCaracteristicas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWdyZWdhQ2FyYWN0ZXJpc3RpY2FzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/Bienvenida.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/Bienvenida.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQmllbnZlbmlkYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/DetalleVenta.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/DetalleVenta.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGV0YWxsZVZlbnRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/EditarCaracteristicas.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EditarCaracteristicas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyQ2FyYWN0ZXJpc3RpY2FzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/EditarProducto.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EditarProducto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyUHJvZHVjdG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/EditarUsuarios.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EditarUsuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyVXN1YXJpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/EliminarCaracteristicas.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EliminarCaracteristicas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWxpbWluYXJDYXJhY3RlcmlzdGljYXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/EliminarUsuarios.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/EliminarUsuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWxpbWluYXJVc3Vhcmlvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/NuevoProducto.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/NuevoProducto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTnVldm9Qcm9kdWN0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/Productos.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/Productos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUHJvZHVjdG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/Usuarios.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/Usuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXN1YXJpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/Ventas.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/Ventas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVudGFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Admin/VentasTerminada.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Admin/VentasTerminada.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVudGFzVGVybWluYWRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Compras/Compra.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Compras/Compra.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHJhc1xDb21wcmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Compras/Registro.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Compras/Registro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHJhc1xSZWdpc3Ryby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Home/Index.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Home/Login.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Home/Privacy.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Home/Register.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Home/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Productos/Carrito.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Productos/Carrito.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXENhcnJpdG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Productos/DetallesProductos.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Productos/DetallesProductos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXERldGFsbGVzUHJvZHVjdG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Productos/ListaProductos.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Productos/ListaProductos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXExpc3RhUHJvZHVjdG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Shared/Error.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/_ViewImports.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/_ViewStart.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Shared/_Layout.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nj4848y82v
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Shared/_LayoutAdmin.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Shared/_LayoutAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-t8ao4atqiw
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Shared/_LayoutAdmin2.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Shared/_LayoutAdmin2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbjIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-jd1etsdxj2
 
-[C:/Users/alexa/OneDrive/Documentos/UniversidadLatina/PerashopWeb-main/PeroShopWeb/Views/Shared/_LayoutCliente.cshtml]
+[C:/Github/Kapicentro/PerashopWeb/PeroShopWeb/Views/Shared/_LayoutCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDbGllbnRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = b-nnrbs89ddw
