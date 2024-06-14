@@ -42,6 +42,7 @@ namespace PeroShopWeb.Controllers
             .Count();
 
             ViewBag.conteo = conteo;
+            ViewBag.Cookie = miCookie;
         }
 
         [HttpGet]

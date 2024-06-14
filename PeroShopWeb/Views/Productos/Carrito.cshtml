@@ -189,7 +189,41 @@
                             <h5>Total</h5>
                             <h5 id="total-to-pay">$@Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio ==1).Sum(c => c.Total);</h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" asp-action="Registro" asp-controller="Compras">Ir al Checkout</button>
+
+                        @{
+                            var x = 0;
+                            foreach (var u in Model.CarritoVentas)
+                            {
+                                if (ViewBag.IdUser == u.idusuario && u.Cambio == 1) 
+                                {
+                                    x++;
+                                }
+                            }
+
+                            if (ViewBag.Cookie == null)
+                            {
+                                <div class="card-body" style="background-color: #f0f8ff; padding: 20px; border-radius: 10px; border: 1px solid #ccc;">
+                                    <div class="autenticado" style="text-align: center; font-family: 'Arial', sans-serif;">
+                                        <p>Por favor, <a asp-controller="Home" asp-action="Login">inicia sesión</a> o <a asp-controller="Home" asp-action="Register">regístrate</a> para poder pasar al check out.</p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (x > 0)
+                                {
+                                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" asp-action="Registro" asp-controller="Compras">Ir al Checkout</button>
+                                }
+                                else
+                                {
+                                    <div class="card-body" style="background-color: #f0f8ff; padding: 20px; border-radius: 10px; border: 1px solid #ccc;">
+                                        <div class="autenticado" style="text-align: center; font-family: 'Arial', sans-serif;">
+                                            <p style="font-size: 18px; color: #333;">Añade un producto al carrito para proceder al pago</p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
                     </div>
                 </div>
             </div>

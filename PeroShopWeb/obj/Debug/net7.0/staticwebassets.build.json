@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lkjM0HC29ANrrw28AGWo+nb1oM6L+oBhO0yUZiXYL3A=",
+  "Hash": "KI0wkiaTxPHoUq6fhWhSG1VnOet/2yeyc3b2AaDwJLQ=",
   "Source": "PeroShopWeb",
   "BasePath": "_content/PeroShopWeb",
   "Mode": "Default",
@@ -131,25 +131,6 @@
       "OriginalItemSpec": "wwwroot\\Images\\Login\\login.jpg"
     },
     {
-      "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\1_3_1_Captura de pantalla 2023-07-04 201110.png",
-      "SourceId": "PeroShopWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\",
-      "BasePath": "_content/PeroShopWeb",
-      "RelativePath": "Images/Products/1_3_1_Captura de pantalla 2023-07-04 201110.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Products\\1_3_1_Captura de pantalla 2023-07-04 201110.png"
-    },
-    {
       "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\13.jpg",
       "SourceId": "PeroShopWeb",
       "SourceType": "Discovered",
@@ -205,25 +186,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\15.jpg"
-    },
-    {
-      "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\4_1_4_Captura de pantalla 2023-06-27 224019.png",
-      "SourceId": "PeroShopWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\",
-      "BasePath": "_content/PeroShopWeb",
-      "RelativePath": "Images/Products/4_1_4_Captura de pantalla 2023-06-27 224019.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Products\\4_1_4_Captura de pantalla 2023-06-27 224019.png"
     },
     {
       "Identity": "C:\\Github\\Kapicentro\\PerashopWeb\\PeroShopWeb\\wwwroot\\Images\\Products\\Airpods1.jpeg",
