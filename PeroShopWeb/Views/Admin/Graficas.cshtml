@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "Datos de Ventas";
+    var colores = ViewBag.Colores as List<string>;
+    var cantidadesColores = ViewBag.CantidadesColores as List<int>;
+    var almacenamientos = ViewBag.Almacenamientos as List<string>;
+    var cantidadesAlmacenamientos = ViewBag.CantidadesAlmacenamientos as List<int>;
+    var productos = ViewBag.Productos as List<string>;
+    var cantidadesProductos = ViewBag.CantidadesProductos as List<int>;
+
+    var categorias = ViewBag.Categorias as List<string>;
+    var cantidadesCategorias = ViewBag.CantidadesCategorias as List<int>;
+    var activos = ViewBag.Activos;
+    var inactivos = ViewBag.Inactivos;
+    var fechas = ViewBag.Fechas as List<string>;
+    var cantidadesFechas = ViewBag.CantidadesFechas as List<int>;
+
+    Layout = "_LayoutAdmin2";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+            .chart-container canvas {
+                width: 100% !important;
+                height: 300px !important;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <div class="chart-container">
+            <div>
+                <h3>Colores Más Vendidos</h3>
+                <canvas id="coloresMasVendidosChart"></canvas>
+            </div>
+            <div>
+                <h3>Almacenamientos Más Comprados</h3>
+                <canvas id="almacenamientosMasCompradosChart"></canvas>
+            </div>
+            <div>
+                <h3>Productos Más Comprados</h3>
+                <canvas id="productosMasCompradosChart"></canvas>
+            </div>
+            <div>
+                <h3>Cantidad de Productos por Categoría</h3>
+                <canvas id="productosPorCategoriaChart"></canvas>
+            </div>
+            <div>
+                <h3>Productos Activos vs Inactivos</h3>
+                <canvas id="productosActivosChart"></canvas>
+            </div>
+            <div>
+                <h3>Distribución de Productos por Fecha de Creación</h3>
+                <canvas id="productosPorFechaChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dataColores = {
+                labels: @Html.Raw(Json.Serialize(colores)),
+                datasets: [{
+                    label: 'Cantidad Vendida',
+                    data: @Html.Raw(Json.Serialize(cantidadesColores)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var dataAlmacenamientos = {
+                labels: @Html.Raw(Json.Serialize(almacenamientos)),
+                datasets: [{
+                    label: 'Cantidad Comprada',
+                    data: @Html.Raw(Json.Serialize(cantidadesAlmacenamientos)),
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var dataProductos = {
+                labels: @Html.Raw(Json.Serialize(productos)),
+                datasets: [{
+                    label: 'Cantidad Comprada',
+                    data: @Html.Raw(Json.Serialize(cantidadesProductos)),
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var dataCategorias = {
+                labels: @Html.Raw(Json.Serialize(categorias)),
+                datasets: [{
+                    label: 'Cantidad de Productos',
+                    data: @Html.Raw(Json.Serialize(cantidadesCategorias)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var dataActivos = {
+                labels: ['Activos', 'Inactivos'],
+                datasets: [{
+                    label: 'Cantidad de Productos',
+                    data: [@activos, @inactivos],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            };
+
+            var dataFechas = {
+                labels: @Html.Raw(Json.Serialize(fechas)),
+                datasets: [{
+                    label: 'Cantidad de Productos',
+                    data: @Html.Raw(Json.Serialize(cantidadesFechas)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var options = {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
+
+            var ctxColores = document.getElementById('coloresMasVendidosChart').getContext('2d');
+            var ctxAlmacenamientos = document.getElementById('almacenamientosMasCompradosChart').getContext('2d');
+            var ctxProductos = document.getElementById('productosMasCompradosChart').getContext('2d');
+            var ctxCategorias = document.getElementById('productosPorCategoriaChart').getContext('2d');
+            var ctxActivos = document.getElementById('productosActivosChart').getContext('2d');
+            var ctxFechas = document.getElementById('productosPorFechaChart').getContext('2d');
+
+            new Chart(ctxColores, { type: 'bar', data: dataColores, options: options });
+            new Chart(ctxAlmacenamientos, { type: 'bar', data: dataAlmacenamientos, options: options });
+            new Chart(ctxProductos, { type: 'bar', data: dataProductos, options: options });
+            new Chart(ctxCategorias, { type: 'bar', data: dataCategorias, options: options });
+            new Chart(ctxActivos, { type: 'pie', data: dataActivos, options: { responsive: true } });
+            new Chart(ctxFechas, { type: 'line', data: dataFechas, options: options });
+        });
+    </script>
+</body>
+</html>

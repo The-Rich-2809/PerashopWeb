@@ -22,6 +22,7 @@
             let maxQuantity = 1;
             let productInterId = null;
             let imageUrl = '';
+            let price = 0;
 
             // Recuperar la categoría desde ViewBag
             let categoria = '@ViewBag.Categoria';
@@ -47,7 +48,8 @@
                                 value: item.value,
                                 text: item.text,
                                 'data-max-quantity': item.maxQuantity,
-                                'data-product-inter-id': item.productInterId
+                                'data-product-inter-id': item.productInterId,
+                                'data-price': item.price  // Añadir el precio como data attribute
                             }));
                         });
 
@@ -73,10 +75,17 @@
                 var selectedOption = $(this).find('option:selected');
                 maxQuantity = selectedOption.data('max-quantity') || 1;
                 productInterId = selectedOption.data('product-inter-id') || null;
+                price = selectedOption.data('price') || 0;
                 var quantityInput = $('input[name="Cantidad"]');
                 quantityInput.val(1);
 
                 $('#stock').text('Stock: ' + maxQuantity);
+
+                // Update hidden input with productInterId
+                $('input[name="idproductointer"]').val(productInterId);
+                // Update the price display
+                $('input[name="Total"]').val(price);
+                $('.product-price').text(price.toFixed(2));  // Actualizar la visualización del precio
             });
 
             $('.btn-minus').click(function () {
@@ -100,6 +109,9 @@
                 $('#stock').text('Stock: ' + maxQuantity);
             }
         });
+
+
+
     </script>
 </head>
 <body>
@@ -125,8 +137,26 @@
                         <div class="col-lg-7 h-auto mb-30">
                             <div class="h-100 bg-light p-30">
                                 <h3 name="Nombre">@ViewBag.NombreProducto</h3>
-                                <h3 class="font-weight-semi-bold mb-4">@u.PrecioVenta</h3>
+                                <h3 class="font-weight-semi-bold mb-4 product-price">@u.PrecioVenta</h3>
                                 <h3 class="font-weight-semi-bold mb-4" id="stock">Stock: </h3>
+                                <h2>Calificación promedio</h2>
+                                <div class="stars">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= ViewBag.AverageRating)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                        else if (i == Math.Ceiling(ViewBag.AverageRating) && ViewBag.AverageRating % 1 != 0)
+                                        {
+                                            <span class="fa fa-star-half-alt checked"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="fa fa-star"></span>
+                                        }
+                                    }
+                                </div>
                                 <div class="d-flex mb-4">
                                     <strong class="text-dark mr-3">Colores:</strong>
                                     <form>

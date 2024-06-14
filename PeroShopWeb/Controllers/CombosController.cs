@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PeroShopWeb.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PeroShopWeb.Controllers
 {
@@ -22,7 +24,6 @@ namespace PeroShopWeb.Controllers
             var listproductoInter = _contextDB.ProductoInter.Where(p => p.idproducto == idprod).ToList();
             var listaalmacenamiento = _contextDB.Almacenamientos.ToList();
 
-            // Crear un conjunto para almacenar los IDs de almacenamiento relacionados con el color especificado
             var almacenamientosRelacionados = new HashSet<int>();
 
             foreach (var i in listproductoInter)
@@ -33,7 +34,6 @@ namespace PeroShopWeb.Controllers
                 }
             }
 
-            // Mantener solo los almacenamientos que no están en el conjunto almacenamientosRelacionados
             listaalmacenamiento = listaalmacenamiento.Where(a => !almacenamientosRelacionados.Contains(a.ID)).ToList();
 
             var items = listaalmacenamiento.Select(a => new ComboBoxItem
@@ -59,7 +59,7 @@ namespace PeroShopWeb.Controllers
                 if (valor == i.idcolor)
                 {
                     almacenamientosRelacionados.Add(i.idalmacenamiento);
-                    imageUrl = i.RutaImagen; // Asigna la URL de la imagen del color seleccionado
+                    imageUrl = i.RutaImagen;
                 }
             }
 
@@ -70,7 +70,8 @@ namespace PeroShopWeb.Controllers
                 Value = a.ID,
                 Text = a.Almacenamineto,
                 MaxQuantity = listproductoInter.FirstOrDefault(p => p.idcolor == valor && p.idalmacenamiento == a.ID)?.Stock ?? 0,
-                ProductInterId = listproductoInter.FirstOrDefault(p => p.idcolor == valor && p.idalmacenamiento == a.ID)?.ID ?? 0
+                ProductInterId = listproductoInter.FirstOrDefault(p => p.idcolor == valor && p.idalmacenamiento == a.ID)?.ID ?? 0,
+                Price = listproductoInter.FirstOrDefault(p => p.idcolor == valor && p.idalmacenamiento == a.ID)?.PrecioVenta ?? 0  // Añadir el precio
             }).ToList();
 
             var response = new DetalleCombosResponse
@@ -93,6 +94,28 @@ namespace PeroShopWeb.Controllers
 
             return Ok(new { maxQuantity = productInter.Stock });
         }
+
+        [HttpGet("CambioCantidad")]
+        public IActionResult CambioCantidad(int idprodInter, int valor, int carritoId)
+        {
+            var carrito = _contextDB.CarritoVenta.FirstOrDefault(i => i.ID == carritoId && i.idproductointer == idprodInter);
+            var inter = _contextDB.ProductoInter.FirstOrDefault(i => i.ID == idprodInter);
+
+            carrito.Cantidad = valor;
+            carrito.Total = carrito.Cantidad * carrito.Total;
+
+            _contextDB.CarritoVenta.Update(carrito);
+            _contextDB.SaveChanges();
+
+            var nuevototal = carrito.Cantidad * inter.PrecioVenta;
+
+            var response = new
+            {
+                total = nuevototal,
+            };
+
+            return Ok(response);
+        }
     }
 
     public class ComboBoxItem
@@ -101,6 +124,7 @@ namespace PeroShopWeb.Controllers
         public string Text { get; set; }
         public int MaxQuantity { get; set; }
         public int ProductInterId { get; set; }
+        public decimal Price { get; set; }  // Añadir el precio
     }
 
     public class DetalleCombosResponse
@@ -108,5 +132,4 @@ namespace PeroShopWeb.Controllers
         public List<ComboBoxItem> Items { get; set; }
         public string ImageUrl { get; set; }
     }
-
 }

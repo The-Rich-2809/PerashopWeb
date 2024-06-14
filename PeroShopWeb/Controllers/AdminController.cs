@@ -8,6 +8,7 @@ using PeroShopWeb.Helpers;
 using System.Text.Json;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace PeroShopWeb.Controllers
 {
@@ -334,15 +335,88 @@ namespace PeroShopWeb.Controllers
         [HttpPost]
         public IActionResult EliminarCaracteristicas()
         {
-            var listproductoInter = _contextDB.ProductoInter.FirstOrDefault(i => i.ID == idinter);
+            var caracteristica = _contextDB.ProductoInter.FirstOrDefault(i => i.ID == idinter);
 
-            
-            Cookies();
-
-            _contextDB.ProductoInter.Remove(listproductoInter);
+            _contextDB.ProductoInter.Remove(caracteristica);
             _contextDB.SaveChanges();
             
             return RedirectToAction("Productos");
         }
+
+        public IActionResult Graficas()
+        {
+            Cookies();
+
+            var coloresMasVendidos = (from cv in _contextDB.CarritoVenta
+                                      join pci in _contextDB.ProductoInter on cv.idproductointer equals pci.ID
+                                      join pc in _contextDB.Colores on pci.idcolor equals pc.ID
+                                      group cv by pc.Color into g
+                                      select new
+                                      {
+                                          Color = g.Key,
+                                          CantidadVendida = g.Sum(cv => cv.Cantidad)
+                                      })
+                             .OrderByDescending(g => g.CantidadVendida)
+                             .ToList();
+
+            var almacenamientosMasComprados = (from cv in _contextDB.CarritoVenta
+                                               join pci in _contextDB.ProductoInter on cv.idproductointer equals pci.ID
+                                               join pa in _contextDB.Almacenamientos on pci.idalmacenamiento equals pa.ID
+                                               group cv by pa.Almacenamineto into g
+                                               select new
+                                               {
+                                                   Almacenamiento = g.Key,
+                                                   CantidadComprada = g.Sum(cv => cv.Cantidad)
+                                               })
+                                               .OrderByDescending(g => g.CantidadComprada)
+                                               .ToList();
+
+            var productosMasComprados = (from cv in _contextDB.CarritoVenta
+                                         join pci in _contextDB.ProductoInter on cv.idproductointer equals pci.ID
+                                         join p in _contextDB.Producto on pci.idproducto equals p.ID
+                                         group cv by p.Nombre into g
+                                         select new
+                                         {
+                                             Producto = g.Key,
+                                             CantidadComprada = g.Sum(cv => cv.Cantidad)
+                                         })
+                                         .OrderByDescending(g => g.CantidadComprada)
+                                         .ToList();
+
+            // Gráfica: Cantidad de Productos por Categoría
+            var productosPorCategoria = _contextDB.Producto
+                .GroupBy(p => p.Categoria)
+                .Select(g => new { Categoria = g.Key, Cantidad = g.Count() })
+                .ToList();
+
+            // Gráfica: Cantidad de Productos Activos vs Inactivos
+            var productosActivos = _contextDB.Producto.Count(p => p.Activo == 1);
+            var productosInactivos = _contextDB.Producto.Count(p => p.Activo == 0);
+
+            // Gráfica: Distribución de Productos por Fecha de Creación
+            var productosPorFecha = _contextDB.Producto
+                .ToList() // Trae los datos a la memoria para procesar
+                .GroupBy(p => p.Fecha.Date)
+                .Select(g => new { Fecha = g.Key.ToString("yyyy-MM-dd"), Cantidad = g.Count() })
+                .OrderBy(p => p.Fecha)
+                .ToList();
+
+            ViewBag.Colores = coloresMasVendidos.Select(c => c.Color).ToList();
+            ViewBag.CantidadesColores = coloresMasVendidos.Select(c => c.CantidadVendida).ToList();
+            ViewBag.Almacenamientos = almacenamientosMasComprados.Select(a => a.Almacenamiento).ToList();
+            ViewBag.CantidadesAlmacenamientos = almacenamientosMasComprados.Select(a => a.CantidadComprada).ToList();
+            ViewBag.Productos = productosMasComprados.Select(p => p.Producto).ToList();
+            ViewBag.CantidadesProductos = productosMasComprados.Select(p => p.CantidadComprada).ToList();
+
+            ViewBag.Categorias = productosPorCategoria.Select(p => p.Categoria).ToList();
+            ViewBag.CantidadesCategorias = productosPorCategoria.Select(p => p.Cantidad).ToList();
+            ViewBag.Activos = productosActivos;
+            ViewBag.Inactivos = productosInactivos;
+            ViewBag.Fechas = productosPorFecha.Select(p => p.Fecha).ToList();
+            ViewBag.CantidadesFechas = productosPorFecha.Select(p => p.Cantidad).ToList();
+
+            return View();
+        }
+
     }
 }

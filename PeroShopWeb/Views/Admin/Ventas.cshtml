@@ -19,18 +19,21 @@
                 @{
                     foreach (var u in Model)
                     {
-                        <tr>
-                            <td>@u.Nombre</td>
-                            <td>@u.Cantidad</td>
-                            <td>(@u.Total + @u.IVA)</td>
-                            <td>@u.Fecha</td>
-                            <td>@u.Envio</td>
-                            <td>
-                            <td>
-                                <a class="btn btn-primary text-white" asp-action="DetalleVenta" asp-route-id="@u.idusuario" asp-route-idord="@u.IDOrden" asp-route-envio="@u.Envio">Editar</a>
-                            </td>
-                            </td>
-                        </tr>
+                        if (u.Envio != "Tu paquete a sido entregado")
+                        {
+                            <tr>
+                                <td>@u.Nombre</td>
+                                <td>@u.Cantidad</td>
+                                <td>(@u.Total + @u.IVA)</td>
+                                <td>@u.Fecha</td>
+                                <td>@u.Envio</td>
+                                <td>
+                                <td>
+                                    <a class="btn btn-primary text-white" asp-action="DetalleVenta" asp-route-id="@u.idusuario" asp-route-idord="@u.IDOrden" asp-route-envio="@u.Envio">Editar</a>
+                                </td>
+                                </td>
+                            </tr>
+                        }
                     }
                 }
             </tbody>

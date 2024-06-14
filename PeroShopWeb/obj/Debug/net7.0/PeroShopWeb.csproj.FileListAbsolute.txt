@@ -479,3 +479,4 @@ C:\Users\Rich-Huawei\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\r
 C:\Users\Rich-Huawei\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\PeroShopWeb.pdb
 C:\Users\Rich-Huawei\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\PeroShopWeb.genruntimeconfig.cache
 C:\Users\Rich-Huawei\Documents\GitHub\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\ref\PeroShopWeb.dll
+C:\Github\Kapicentro\PerashopWeb\PeroShopWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_LayoutUsuario.cshtml.rz.scp.css

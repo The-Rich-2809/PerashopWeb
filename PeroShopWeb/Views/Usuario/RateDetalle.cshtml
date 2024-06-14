@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "_LayoutUsuario";
+}
+
+<body>
+    <div class="table-responsive">
+        <form method="post">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Almacenamiento</th>
+                        <th scope="col">Calificacion</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @{
+
+                        foreach (var u in ViewBag.CarrVen)
+                        {
+                            foreach (var j in ViewBag.inter)
+                            {
+                                if (u.idproductointer == j.ID)
+                                {
+                                    foreach (var l in ViewBag.Productos)
+                                    {
+                                        if (j.idproducto == l.ID)
+                                        {
+                                            <tr>
+                                                <td>@l.Nombre</td>
+                                                @foreach (var m in ViewBag.colores)
+                                                {
+                                                    if (j.idcolor == m.ID)
+                                                    {
+                                                        <td>@m.Color</td>
+                                                        <input type="hidden" name="color" value="@m.Color"/>
+                                                    }
+                                                }
+                                                @if (l.Categoria == "Telefonos")
+                                                {
+                                                    foreach (var m in ViewBag.alma)
+                                                    {
+                                                        if (j.idalmacenamiento == m.ID)
+                                                        {
+                                                            <td>@m.Almacenamineto</td>
+                                                            <input type="hidden" name="alma" value="@m.Almacenamineto" />
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <td>Sin Almacenamiento</td>
+                                                }
+                                                <td>@j.Calificacion</td>
+                                                <td>
+                                                    @if (u.Envio != "Tu paquete a sido calificado")
+                                                    {
+                                                        <td>
+                                                            <a class="btn btn-primary text-white" asp-action="RateProducto" asp-route-id="@u.ID">Califca el producto</a>
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Productos ya calificados</td>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>

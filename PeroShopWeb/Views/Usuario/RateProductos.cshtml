@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PeroShopWeb.Models.CarritoVenta>
+@{
+    Layout = "_LayoutUsuario";
+    var modelLength = Model.Count();
+    Console.WriteLine(modelLength);
+}
+
+<body>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Orden</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Detalle del envio</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @{
+                    var groupedOrders = Model.Where(u => u.Envio == "Tu paquete a sido entregado")
+                    .GroupBy(u => u.IDOrden)
+                    .Select(g => new { IDOrden = g.Key, Preciototal = g.Sum(u => u.Total), FirstItem = g.First(), FirstItemID = g.First().ID});
+
+                    foreach (var u in groupedOrders)
+                    {
+                        <tr>
+                            <td>@u.IDOrden</td>
+                            <td>@u.Preciototal</td>
+                            <td>@u.FirstItem.Fecha</td>
+                            <td>@u.FirstItem.Envio</td>
+                            <td>
+                            <td>
+                                    @{
+                                        if (ViewBag.yacalificado == u.FirstItemID)
+                                        {
+                                            <p>Producto ya </p>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-primary text-white" asp-action="RateDetalle" asp-route-id="@u.FirstItem.idusuario" asp-route-idord="@u.IDOrden" asp-route-envio="@u.FirstItem.Envio" asp-route-numarticulos="@modelLength">Califica tus productos</a>
+                                        }
+                                    }
+                            </td>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

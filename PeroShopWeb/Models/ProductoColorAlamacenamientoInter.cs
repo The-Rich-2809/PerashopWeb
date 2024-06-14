@@ -15,6 +15,7 @@ namespace PeroShopWeb.Models
         public string Caracteristicas { get; set; }
         public decimal PrecioCompra { get; set; }
         public decimal PrecioVenta { get; set; }
+        public int Calificacion { get; set; }
 
         [ForeignKey("idproducto")]
         public virtual Producto Producto { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿    using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PeroShopWeb.Models;
 using System.Drawing;
@@ -53,6 +54,12 @@ namespace PeroShopWeb.Controllers
             var producto = _ContextoDB.Producto.First(p => p.ID == valor);
             ViewBag.NombreProducto = producto.Nombre;
             ViewBag.Categoria = producto.Categoria;
+
+            var averageRating = _ContextoDB.ProductoInter
+                                    .Where(r => r.ID == valor)
+                                    .Average(r => r.Calificacion);
+
+            ViewBag.AverageRating = averageRating;
 
             List<Producto> listaProductos = _ContextoDB.Producto.ToList();
             List<ProductoColor> productoColors = _ContextoDB.Colores.ToList();

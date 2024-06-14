@@ -158,7 +158,8 @@ namespace PeroShopWeb.Migrations
                     RutaImagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Caracteristicas = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrecioCompra = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PrecioVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PrecioVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Calificacion = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

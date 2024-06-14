@@ -1,4 +1,4 @@
-﻿@model PeroShopWeb.Models.ProductosViewModel﻿
+﻿@model PeroShopWeb.Models.ProductosViewModel
 
 @{
     if (ViewBag.Nivel == "Admin")
@@ -10,10 +10,111 @@
         Layout = "_LayoutCliente";
     }
     int totalItems = Model.CarritoVentas.Count(c => c.idusuario == ViewBag.IdUser);
-    decimal totalPrice = Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser).Sum(c => c.Total);
+    decimal totalPrice = Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio ==1).Sum(c => c.Total);
     decimal shippingCost = 10.00m;
     decimal totalToPay = totalPrice + shippingCost;
 }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    function updateTotals() {
+        var subtotal = 0;
+        $('.total-cell').each(function () {
+            subtotal += parseFloat($(this).data('total'));
+        });
+        $('#subtotal').text('$' + subtotal.toFixed(2));
+        var shippingCost = 10.00; // Assuming shipping cost is fixed
+        var totalToPay = subtotal + shippingCost;
+        $('#total-to-pay').text('$' + totalToPay.toFixed(2));
+    }
+
+    $('.numeric').on("change", function () {
+        var valor = $(this).val();
+        var idprodInter = $(this).closest('tr').data('product-inter-id'); // Obtener el ID del producto inter
+        var carritoId = $(this).closest('tr').data('carrito-id'); // Obtener el ID del carrito si es necesario
+        $.ajax({
+            type: 'GET',
+                url: '/api/Combos/CambioCantidad',
+            data: { valor: valor, idprodInter: idprodInter, carritoId: carritoId },
+                success: function (response) {
+                    // Actualizar el total de la fila
+                    var price = parseFloat($(this).closest('tr').find('td:eq(1)').text());
+                    var total = cantidad * price;
+                    $(this).closest('tr').find('.total-cell').text(total.toFixed(2)).data('total', @Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio == 1).Sum(c => c.Total));
+
+                    // Calcular el nuevo subtotal en el cliente
+                    var nuevoSubtotal = 0;
+                    $('.total-cell').each(function () {
+                        nuevoSubtotal = parseFloat(@Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio == 1).Sum(c => c.Total));
+                    });
+
+                    // Actualizar el subtotal y el total en la interfaz de usuario
+                    $('#subtotal').text('$' + @Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio == 1).Sum(c => c.Total));
+                    var nuevoTotal = nuevoSubtotal + 10.00; // Asumiendo que el costo de envío es fijo
+                    $('#total-to-pay').text('$' + nuevoTotal.toFixed(2));
+                },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    $('#combobox2').on("change", function () {
+        var selectedOption = $(this).find('option:selected');
+        maxQuantity = selectedOption.data('max-quantity') || 1;
+        productInterId = selectedOption.data('product-inter-id') || null;
+        price = selectedOption.data('price') || 0;
+        var quantityInput = $('input[name="Cantidad"]');
+        quantityInput.val(1);
+
+        $('#stock').text('Stock: ' + maxQuantity);
+
+        // Update hidden input with productInterId
+        $('input[name="idproductointer"]').val(productInterId);
+        // Update the price display
+        $('input[name="Total"]').val(price);
+        $('.product-price').text(price.toFixed(2));  // Actualizar la visualización del precio
+    });
+
+    $('.btn-minus, .btn-plus').click(function () {
+        var isIncrement = $(this).hasClass('btn-plus');
+        var productInterId = $(this).closest('tr').data('product-inter-id'); // Obtener el ID del producto inter
+        var carritoId = $(this).closest('tr').data('carrito-id'); // Obtener el ID del carrito si es necesario
+        var quantityInput = $('input[data-product-inter-id="' + productInterId + '"]');
+        var currentValue = parseInt(quantityInput.val());
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/Combos/GetMaxQuantity',
+            data: { productInterId: productInterId, carritoId: carritoId }, // Enviar el ID del producto inter y el ID del carrito
+            success: function (response) {
+                var maxQuantity = response.maxQuantity;
+
+                if (isIncrement && currentValue < maxQuantity) {
+                    currentValue++;
+                    quantityInput.val(currentValue);
+                } else if (!isIncrement && currentValue > 1) {
+                    currentValue--;
+                    quantityInput.val(currentValue);
+                }
+
+                var price = parseFloat(quantityInput.closest('tr').find('td:eq(1)').text());
+                var total = currentValue * price;
+                quantityInput.closest('tr').find('.total-cell').text(total.toFixed(2)).data('total', total);
+
+                updateTotals();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    // Initial call to set totals on page load
+    updateTotals();
+});
+</script>
 
 <div class="container-fluid">
     <form method="post">
@@ -40,26 +141,16 @@
                                     {
                                         if (u.Cambio == 1)
                                         {
-                                            <tr>
+                                            <tr data-product-inter-id="@i.ID" data-carrito-id="@u.ID">
                                                 <td class="align-middle">
                                                     <img src="@u.RutaImagen" alt="" style="width: 50px;"> @u.Nombre
                                                 </td>
                                                 <td class="align-middle">@i.PrecioVenta</td>
                                                 <td class="align-middle">
                                                     <div class="input-group quantity mx-auto" style="width: 100px;">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-sm btn-primary btn-minus" data-product-inter-id="@i.ID">
-                                                                <i class="fa fa-minus"></i>
-                                                            </button>
-                                                        </div>
-                                                        <input type="text"
-                                                               class="form-control form-control-sm bg-secondary border-0 text-center"
-                                                               value="@u.Cantidad" data-product-inter-id="@i.ID">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-sm btn-primary btn-plus" data-product-inter-id="@i.ID">
-                                                                <i class="fa fa-plus"></i>
-                                                            </button>
-                                                        </div>
+                                                        <input type="number"
+                                                               class="form-control form-control-sm bg-secondary border-0 text-center numeric"
+                                                               value="@u.Cantidad" data-product-inter-id="@i.ID" >
                                                     </div>
                                                 </td>
                                                 <td class="align-middle total-cell" data-total="@(u.Cantidad * i.PrecioVenta)">@(u.Cantidad * i.PrecioVenta)</td>
@@ -91,16 +182,12 @@
                 <div class="bg-light p-30 mb-5">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6 id="subtotal">$@totalPrice</h6>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">$10</h6>
+                        <h6 id="subtotal">$@Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio == 1).Sum(c => c.Total);</h6>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5 id="total-to-pay">$@totalToPay</h5>
+                            <h5 id="total-to-pay">$@Model.CarritoVentas.Where(c => c.idusuario == ViewBag.IdUser && c.Cambio ==1).Sum(c => c.Total);</h5>
                         </div>
                         <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" asp-action="Registro" asp-controller="Compras">Ir al Checkout</button>
                     </div>
@@ -110,62 +197,3 @@
     </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        function updateTotals() {
-            var subtotal = 0;
-            $('.total-cell').each(function () {
-                subtotal += parseFloat($(this).data('total'));
-            });
-            $('#subtotal').text('$' + subtotal.toFixed(2));
-            var shippingCost = 10.00; // Assuming shipping cost is fixed
-            var totalToPay = subtotal + shippingCost;
-            $('#total-to-pay').text('$' + totalToPay.toFixed(2));
-        }
-
-        $('.btn-minus, .btn-plus').click(function () {
-            var isIncrement = $(this).hasClass('btn-plus');
-            var productInterId = $(this).data('product-inter-id');
-            var quantityInput = $('input[data-product-inter-id="' + productInterId + '"]');
-            var currentValue = parseInt(quantityInput.val());
-
-            $.ajax({
-                type: 'GET',
-                url: '/api/Combos/GetMaxQuantity',
-                data: { productInterId: productInterId },
-                success: function (response) {
-                    var maxQuantity = response.maxQuantity;
-
-                    if (isIncrement && currentValue < maxQuantity) {
-                        currentValue++;
-                        quantityInput.val(currentValue);
-                    } else if (!isIncrement && currentValue > 1) {
-                        currentValue--;
-                        quantityInput.val(currentValue);
-                    }
-
-                    var price = parseFloat(quantityInput.closest('tr').find('td:eq(1)').text());
-                    var total = currentValue * price;
-                    quantityInput.closest('tr').find('.total-cell').text(total.toFixed(2)).data('total', total);
-
-                    updateTotals();
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        });
-
-        // Initial call to set totals on page load
-        updateTotals();
-    });
-</script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#form-to-hide').hide();
-    });
-</script>

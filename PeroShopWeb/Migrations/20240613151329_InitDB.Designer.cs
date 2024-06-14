@@ -12,7 +12,7 @@ using PeroShopWeb.Models;
 namespace PeroShopWeb.Migrations
 {
     [DbContext(typeof(PerashopDB))]
-    [Migration("20240611061241_InitDB")]
+    [Migration("20240613151329_InitDB")]
     partial class InitDB
     {
         /// <inheritdoc />
@@ -185,6 +185,9 @@ namespace PeroShopWeb.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("Calificacion")
+                        .HasColumnType("int");
 
                     b.Property<string>("Caracteristicas")
                         .IsRequired()

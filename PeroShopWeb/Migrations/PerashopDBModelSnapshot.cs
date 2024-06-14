@@ -183,6 +183,9 @@ namespace PeroShopWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int>("Calificacion")
+                        .HasColumnType("int");
+
                     b.Property<string>("Caracteristicas")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

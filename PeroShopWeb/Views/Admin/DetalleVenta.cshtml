@@ -17,74 +17,58 @@
                         @ViewBag.Usuario.Nombre
                     </dd>
                     <dt class="col-sm-2">
-                        Calle
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.Direccion.Calle
-                    </dd>
-                    <dt class="col-sm-2">
                         Correo
                     </dt>
                     <dd class="col-sm-10">
                         @ViewBag.Usuario.Correo
                     </dd>
                     <dt class="col-sm-2">
-                        Alcaldia
+                        Telefono
                     </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.Direccion.Delegacion
-                    </dd>
-                    <dt class="col-sm-2">
-                        Colonia
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.Direccion.Colonia
-                    </dd>
-                    <dt class="col-sm-2">
-                        CP
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.Direccion.CodigoPostal
-                    </dd>
                 </dl>
                 <hr class="my-4">
 
                 @{
-                    for (int i = 0; i < ViewBag.CarrVen.Count; i++)
+                    foreach (var i in ViewBag.CarrVen)
                     {
-                        if (ViewBag.CarrVen[i].IDOrden == ViewBag.IdOrden)
+                        if (i.IDOrden == ViewBag.IdOrden)
                         {
-
-                            for (int j = 0; j < ViewBag.Productos.Count; j++)
+                            foreach (var j in ViewBag.inter)
                             {
-                                if (ViewBag.inter[i].idproducto == ViewBag.Productos[j].ID)
+                                if (i.idproductointer == j.ID)
                                 {
-                                    <dl class="row">
-                                        <dt class="col-sm-2">
-                                            Nombre
-                                        </dt>
-                                        <dd class="col-sm-10">
-                                            @ViewBag.Productos[j].Nombre
-                                        </dd>
-                                        <dt class="col-sm-2">
-                                            Descripcion
-                                        </dt>
-                                        <dd class="col-sm-10">
-                                            @ViewBag.inter[j].Caracteristicas
-                                        </dd>
-                                        <dt class="col-sm-2">
-                                            Cantidad
-                                        </dt>
-                                        <dd class="col-sm-10">
-                                            @ViewBag.CarrVen[i].Cantidad
-                                        </dd>
-                                        <dt class="col-sm-2">
-                                            Precio
-                                        </dt>
-                                        <dd class="col-sm-10">
-                                            @ViewBag.inter[i].PrecioVenta
-                                        </dd>
-                                    </dl>
+                                    foreach (var k in ViewBag.Productos)
+                                    {
+                                        if (j.idproducto == k.ID)
+                                        {
+                                            <dl class="row">
+                                                <dt class="col-sm-2">
+                                                    Nombre
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @k.Nombre
+                                                </dd>
+                                                <dt class="col-sm-2">
+                                                    Descripcion
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @j.Caracteristicas
+                                                </dd>
+                                                <dt class="col-sm-2">
+                                                    Cantidad
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @i.Cantidad
+                                                </dd>
+                                                <dt class="col-sm-2">
+                                                    Precio
+                                                </dt>
+                                                <dd class="col-sm-10">
+                                                    @j.PrecioVenta
+                                                </dd>
+                                            </dl>
+                                        }
+                                    }
                                 }
                             }
                         }

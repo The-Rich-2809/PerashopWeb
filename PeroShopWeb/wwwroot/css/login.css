@@ -30,7 +30,7 @@
 }
 /*Login*/
 .derechaL {
-    background: url(../Images/Login/login.jpg);
+    background: url(/Images/Products/login.jpg);
     background-size: cover;
     background-position: center;
     width: 50%;
